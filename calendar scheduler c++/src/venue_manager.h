@@ -9,7 +9,7 @@ using namespace std;
 
 class VenueManager {
    private:
-    /* Checks if venue exists by returning the index of venue */
+    /* Returns index of venue */
     int venueIndex(string venue_name) const;
 
    public:
@@ -27,6 +27,18 @@ class VenueManager {
 
     /* Displaying all venues */
     void showVenues() const;
+
+    /* Adding an event to a venue */
+    void addEvent(string venue_name, string event_name, int date,
+                  int start_time, int end_time);
+
+    /* Deleting an event from a venue */
+    void delEvent(string venue_name, string event_name, int date,
+                  int start_time);
+
+    void showEvents(string venue_name, int date) const;
+
+    void showCalendar(string venue_name) const;
 };
 
 #endif

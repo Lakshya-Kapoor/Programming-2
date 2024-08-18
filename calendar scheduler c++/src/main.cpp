@@ -1,47 +1,55 @@
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+#include "parsing_input.h"
 #include "venue.h"
-#include "venue_manager.h"
-
-using namespace std;
 
 int main() {
-    VenueManager manager;
+    char input[500];
+    char command[20];
 
-    while (true) {
-        cout << "Menu\n1. Add venue\n2. Delete Venue\n3. Show Venues\n";
-        cout << "Enter option: ";
-        int option;
-        cin >> option;
+    FILE *file;
 
-        switch (option) {
-            case 1: {
-                string venue_name, venue_location;
-                int capacity;
+    // Open the file in read mode
+    file = fopen("inputs/test.txt", "r");
 
-                cout << "Venue name: ";
-                cin >> venue_name;
-                cout << "Venue location: ";
-                cin >> venue_location;
-                cout << "Venue capacity: ";
-                cin >> capacity;
+    // Check if the file was opened successfully
+    if (file == NULL) {
+        perror("Error opening file");
+        return 1;
+    }
 
-                manager.addVenue(venue_name, venue_location, capacity);
-                break;
-            }
-            case 2: {
-                string venue_name;
-                cout << "Venue name: ";
-                cin >> venue_name;
+    // Read the file line by line
+    while (fgets(input, sizeof(input), file) != NULL) {
+        // Removing new line character
+        input[strcspn(input, "\n")] = '\0';
 
-                manager.delVenue(venue_name);
-                break;
-            }
-            case 3: {
-                manager.showVenues();
-            }
+        // Extracting the command
+        sscanf(input, "%s", command);
+
+        if (strcmp(command, "addVenue") == 0) {
+            parseAddVenue(input + strlen(command) + 1);
+        } else if (strcmp(command, "delVenue") == 0) {
+            parseDeleteVenue(input + strlen(command) + 1);
+        } else if (strcmp(command, "showVenues") == 0) {
+            parseShowVenues(input + strlen(command) + 1);
+        } else if (strcmp(command, "addEvent") == 0) {
+            parseAddEvent(input + strlen(command) + 1);
+        } else if (strcmp(command, "delEvent") == 0) {
+            parseDeleteEvent(input + strlen(command) + 1);
+        } else if (strcmp(command, "showEvents") == 0) {
+            parseShowEvents(input + strlen(command) + 1);
+        } else if (strcmp(command, "End") == 0) {
+            // while (no_of_venues) {
+            //     delVenue(venues[0]->venue_name, 0);
+            // }
+            break;
         }
     }
+
+    // Close the file
+    fclose(file);
 
     return 0;
 }

@@ -12,3 +12,17 @@ Venue::Venue(string venue_name, string venue_location, int capacity) {
         calendar[i] = new Day;
     }
 }
+
+void Venue::showCalendar() const {
+    int total_events = 0;
+    for (int date = 1; date < 31; date++) {
+        total_events += calendar[date]->no_of_events;
+    }
+
+    cout << total_events << endl;
+
+    for (int date = 1; date < 31; date++) {
+        cout << date << " ";
+        calendar[date]->showEvents();
+    }
+}

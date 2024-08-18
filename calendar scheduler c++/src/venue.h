@@ -12,10 +12,13 @@ class Venue {
     string name;       /* Venue name */
     string location;   /* Venue location */
     int capacity;      /* Venue capacity */
-    Day* calendar[31]; /*Calendar*/
+    Day* calendar[31]; /* Calendar of venue */
 
     /* Venue constructor */
     Venue(string venue_name, string venue_location, int capacity);
+
+    /* Show calendar */
+    void showCalendar() const;
 };
 
 #endif

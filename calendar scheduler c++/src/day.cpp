@@ -14,7 +14,7 @@ Day::Day() {
 
 bool Day::eventClashing(int start_time, int end_time) const {
     for (int i = start_time; i < end_time; i++) {
-        if (events_list[i] == nullptr) return true;
+        if (events_list[i] != nullptr) return true;
     }
     return false;
 }
@@ -41,6 +41,8 @@ void Day::addEvent(string event_name, int start_time, int end_time) {
         events_list[i] = newEventPtr;
     }
 
+    no_of_events++;
+
     cout << "0\n";
 }
 void Day::delEvent(string event_name, int start_time) {
@@ -57,6 +59,8 @@ void Day::delEvent(string event_name, int start_time) {
 
     delete event;
     no_of_events--;
+
+    cout << "0\n";
 }
 
 void Day::showEvents() const {
