@@ -12,7 +12,7 @@ int main() {
     FILE *file;
 
     // Open the file in read mode
-    file = fopen("inputs/test.txt", "r");
+    file = fopen("inputs/sample3.txt", "r");
 
     // Check if the file was opened successfully
     if (file == NULL) {
@@ -40,10 +40,9 @@ int main() {
             parseDeleteEvent(input + strlen(command) + 1);
         } else if (strcmp(command, "showEvents") == 0) {
             parseShowEvents(input + strlen(command) + 1);
+        } else if (strcmp(command, "showCalendar") == 0) {
+            parseShowCalendar(input + strlen(command) + 1);
         } else if (strcmp(command, "End") == 0) {
-            // while (no_of_venues) {
-            //     delVenue(venues[0]->venue_name, 0);
-            // }
             break;
         }
     }

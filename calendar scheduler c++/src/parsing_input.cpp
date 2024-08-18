@@ -91,3 +91,14 @@ void parseShowEvents(char* input) {
 
     manager.showEvents(venue_name, event_date);
 }
+
+void parseShowCalendar(char* input) {
+    char venue_name[50];
+    int parsedItems = sscanf(input, "\"%[^\"]\"", venue_name);
+
+    if (parsedItems < 1) {
+        printError
+    }
+
+    manager.showCalendar(venue_name);
+}

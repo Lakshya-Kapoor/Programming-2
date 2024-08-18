@@ -36,8 +36,10 @@ class VenueManager {
     void delEvent(string venue_name, string event_name, int date,
                   int start_time);
 
+    /* Show all events of a venue on a particular date */
     void showEvents(string venue_name, int date) const;
 
+    /* Show all events of a venue */
     void showCalendar(string venue_name) const;
 };
 
