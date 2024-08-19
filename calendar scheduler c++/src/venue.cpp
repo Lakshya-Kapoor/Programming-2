@@ -4,9 +4,9 @@ using namespace std;
 
 #include "venue.h"
 
-Venue::Venue(string venue_name, string venue_location, int capacity) {
+Venue::Venue(string venue_name, string location, int capacity) {
     this->name = venue_name;
-    this->location = venue_location;
+    this->location = location;
     this->capacity = capacity;
     for (int i = 0; i < 31; i++) {
         calendar[i] = new Day;
@@ -24,5 +24,11 @@ void Venue::showCalendar() const {
     for (int date = 1; date < 31; date++) {
         cout << date << " ";
         calendar[date]->showEvents();
+    }
+}
+
+Venue::~Venue() {
+    for (int i = 0; i < 31; i++) {
+        delete calendar[i];
     }
 }

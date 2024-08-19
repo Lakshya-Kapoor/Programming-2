@@ -15,10 +15,13 @@ class Venue {
     Day* calendar[31]; /* Calendar of venue */
 
     /* Venue constructor */
-    Venue(string venue_name, string venue_location, int capacity);
+    Venue(string venue_name, string location, int capacity);
 
     /* Show calendar */
     void showCalendar() const;
+
+    /* Destructor */
+    ~Venue();
 };
 
 #endif

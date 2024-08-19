@@ -30,6 +30,9 @@ class Day {
 
     /* Displaying all events */
     void showEvents() const;
+
+    /* Destructor */
+    ~Day();
 };
 
 #endif

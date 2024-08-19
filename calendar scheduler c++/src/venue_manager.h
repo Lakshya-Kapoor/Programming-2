@@ -41,6 +41,9 @@ class VenueManager {
 
     /* Show all events of a venue */
     void showCalendar(string venue_name) const;
+
+    /* Destructor */
+    ~VenueManager();
 };
 
 #endif

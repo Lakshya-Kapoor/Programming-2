@@ -78,3 +78,15 @@ void Day::showEvents() const {
         }
     }
 }
+
+Day::~Day() {
+    int i = 0;
+    while (i < 24) {
+        if (events_list[i] == nullptr) {
+            i++;
+        } else {
+            i = events_list[i]->end_time;
+            delete events_list[i];
+        }
+    }
+}

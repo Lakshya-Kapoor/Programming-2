@@ -105,3 +105,9 @@ void VenueManager::showCalendar(string venue_name) const {
 
     venues_list[index]->showCalendar();
 }
+
+VenueManager::~VenueManager() {
+    for (int i = 0; i < no_of_venues; i++) {
+        delete venues_list[i];
+    }
+}

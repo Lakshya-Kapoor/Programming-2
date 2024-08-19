@@ -13,8 +13,9 @@ compile: ${SRC_FILES}
 test: compile
 	bash test.sh
 
-run: compile test
+run: compile
 	./program
 
 clean:
 	rm -f program
+	rm -rf results/output.txt
