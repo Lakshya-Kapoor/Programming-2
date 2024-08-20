@@ -55,9 +55,7 @@ void VenueManager::delVenue(string venue_name) {
 void VenueManager::showVenues() const {
     cout << no_of_venues << endl;
     for (int i = 0; i < no_of_venues; i++) {
-        Venue* venue = venues_list[i];
-        cout << venue->name << " " << venue->location << " " << venue->capacity
-             << endl;
+        venues_list[i]->display();
     }
 }
 

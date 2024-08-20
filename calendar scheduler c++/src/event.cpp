@@ -9,3 +9,7 @@ Event::Event(string event_name, int start_time, int end_time) {
     this->start_time = start_time;
     this->end_time = end_time;
 }
+
+void Event::display() const {
+    cout << name << " " << start_time << " " << end_time << endl;
+}

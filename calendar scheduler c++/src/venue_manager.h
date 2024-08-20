@@ -9,13 +9,13 @@ using namespace std;
 
 class VenueManager {
    private:
+    int no_of_venues;        /* Number of venues */
+    Venue* venues_list[100]; /* List of pointers to venue objects */
+
     /* Returns index of venue */
     int venueIndex(string venue_name) const;
 
    public:
-    int no_of_venues;        /* Number of venues */
-    Venue* venues_list[100]; /* List of pointers to venue objects */
-
     /* Venue manager constructor */
     VenueManager();
 

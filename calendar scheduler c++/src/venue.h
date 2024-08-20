@@ -17,6 +17,9 @@ class Venue {
     /* Venue constructor */
     Venue(string venue_name, string location, int capacity);
 
+    /* Display venue */
+    void display() const;
+
     /* Show calendar */
     void showCalendar() const;
 

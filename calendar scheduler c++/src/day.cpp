@@ -71,9 +71,7 @@ void Day::showEvents() const {
         if (events_list[i] == nullptr) {
             i++;
         } else {
-            Event* event = events_list[i];
-            cout << event->name << " " << event->start_time << " "
-                 << event->end_time << endl;
+            events_list[i]->display();
             i = events_list[i]->end_time;
         }
     }

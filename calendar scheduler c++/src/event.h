@@ -13,6 +13,9 @@ class Event {
 
     /* Event constructor */
     Event(string event_name, int start_time, int end_time);
+
+    /* Display event */
+    void display() const;
 };
 
 #endif

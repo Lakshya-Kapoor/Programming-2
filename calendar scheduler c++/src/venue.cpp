@@ -13,6 +13,10 @@ Venue::Venue(string venue_name, string location, int capacity) {
     }
 }
 
+void Venue::display() const {
+    cout << name << " " << location << " " << capacity << endl;
+}
+
 void Venue::showCalendar() const {
     int total_events = 0;
     for (int date = 1; date < 31; date++) {
