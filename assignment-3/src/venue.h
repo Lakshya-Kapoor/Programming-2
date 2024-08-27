@@ -1,6 +1,11 @@
 #ifndef VENUE_H
 #define VENUE_H
 
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
 class Venue {
    public:
     string name;
@@ -22,9 +27,14 @@ class VenueManager {
     int venueNameExists(string name, string country) const;
 
    public:
-    void addVenue(string name, string location, int capacity); /* Add venue */
-    void delVenue(string name, string country); /* Delete venue */
-    void showVenues(string location) const;     /* Show venues */
+    /* Add venue */
+    void addVenue(string name, string location, int capacity);
+
+    /* Delete venue */
+    void delVenue(string name, string country);
+
+    /* Show venues */
+    void showVenues(string location) const;
 };
 
 #endif

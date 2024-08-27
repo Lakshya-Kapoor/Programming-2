@@ -13,10 +13,10 @@ int main() {
     FILE *file;
 
     char file_name[50];
-    scanf("%s", file_name);
+    // scanf("%s", file_name);
 
     // Open the file in read mode
-    file = fopen(file_name, "r");
+    file = fopen("tests/input.txt", "r");
 
     // Check if the file was opened successfully
     if (file == NULL) {

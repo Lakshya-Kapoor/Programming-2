@@ -87,24 +87,34 @@ void VenueManager::showVenues(string location) const {
     string postalCode = res[2];
     string country = res[3];
 
-    vector<Venue*> venuesToDisplay;
+    bool type1 = (postalCode.empty() && !country.empty() && city.empty() &&
+                  state.empty());
+    bool type2 = (!city.empty() && !state.empty() && !country.empty() &&
+                  postalCode.empty());
+    bool type3 = (!postalCode.empty() && !country.empty() && city.empty() &&
+                  state.empty());
+    bool type4 = (!city.empty() && !state.empty() && !postalCode.empty() &&
+                  !country.empty());
+
+    vector<Venue> venuesToDisplay;
 
     for (Venue ven : venueList) {
         if (ven.country == country) {
-            if (ven.city == city && ven.state == state &&
+            if (type4 && ven.city == city && ven.state == state &&
                 ven.postalCode == postalCode) {
-                venuesToDisplay.push_back(&ven);
-            } else if (ven.postalCode == postalCode) {
-                venuesToDisplay.push_back(&ven);
-            } else if (ven.city == city && ven.state == state) {
-                venuesToDisplay.push_back(&ven);
-            } else {
-                venuesToDisplay.push_back(&ven);
+                venuesToDisplay.push_back(ven);
+            } else if (type3 && ven.postalCode == postalCode) {
+                venuesToDisplay.push_back(ven);
+            } else if (type2 && ven.city == city && ven.state == state) {
+                venuesToDisplay.push_back(ven);
+            } else if (type1) {
+                venuesToDisplay.push_back(ven);
             }
         }
     }
+
     cout << venuesToDisplay.size() << "\n";
-    for (Venue* ven : venuesToDisplay) {
-        ven->displayVenue();
+    for (Venue ven : venuesToDisplay) {
+        ven.displayVenue();
     }
 }

@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "congregation.h"
+#include "utils.h"
 #include "venue.h"
 
 #define printError             \
@@ -21,28 +22,27 @@ void parseAddCongregation(char* input) {
     char type[50];
     char startDate[20];
     char endDate[20];
-
     int parsedItems =
         sscanf(input, "\"%[^\"]\" \"%[^\"]\" \"%[^\"]\" \"%[^\"]\"", name, type,
                startDate, endDate);
-
     if (parsedItems < 4) {
         printError
     }
-    // TODO: check date validity
-    // TODO: check cong type validity
+    if (!validDate(startDate) || !validDate(endDate)) {
+        printError
+    }
+    if (!validCongregaionType(type)) {
+        printError
+    }
     congManager.addCongregation(name, type, startDate, endDate);
 }
 
 void parseDelCongregation(char* input) {
     char name[100];
-
     int parsedItems = sscanf(input, "\"%[^\"]\"", name);
-
     if (parsedItems < 1) {
         printError
     }
-
     congManager.delCongregation(name);
 }
 
@@ -52,13 +52,13 @@ void parseAddVenue(char* input) {
     char name[100];
     char location[100];
     int capacity;
-
     int parsedItems =
         sscanf(input, "\"%[^\"]\" \"%[^\"]\" %d", name, location, &capacity);
 
     if (parsedItems < 3) {
         printError
     }
+    venManager.addVenue(name, location, capacity);
 }
 
 void parseDelVenue(char* input) {
@@ -68,6 +68,7 @@ void parseDelVenue(char* input) {
     if (parsedItems < 2) {
         printError
     }
+    venManager.delVenue(name, country);
 }
 
 void parseShowVenues(char* input) {
@@ -76,4 +77,5 @@ void parseShowVenues(char* input) {
     if (parsedItems < 1) {
         printError
     }
+    venManager.showVenues(location);
 }

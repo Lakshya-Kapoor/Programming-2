@@ -26,7 +26,6 @@ int CongregationManager::CongregationExists(string name) const {
     return -1;
 }
 
-// TODO add date format validation while parsing
 void CongregationManager::addCongregation(string name, string congregationType,
                                           string startDate, string endDate) {
     int index = CongregationExists(name);
