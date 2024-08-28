@@ -19,7 +19,7 @@ void Congregation::displayCongregation() const {
     cout << endDate << endl;
 }
 
-int CongregationManager::CongregationExists(string name) const {
+int CongregationManager::congregationExists(string name) const {
     for (int i = 0; i < congregationList.size(); i++) {
         if (congregationList[i].name == name) return i;
     }
@@ -28,7 +28,7 @@ int CongregationManager::CongregationExists(string name) const {
 
 void CongregationManager::addCongregation(string name, string congregationType,
                                           string startDate, string endDate) {
-    int index = CongregationExists(name);
+    int index = congregationExists(name);
     if (index != -1) {
         cout << -1 << endl;
         return;
@@ -42,7 +42,7 @@ void CongregationManager::addCongregation(string name, string congregationType,
 
 // TODO delete all reservations of venues and the events
 void CongregationManager::delCongregation(string name) {
-    int index = CongregationExists(name);
+    int index = congregationExists(name);
     if (index == -1) {
         cout << -1 << endl;
         return;
@@ -65,3 +65,40 @@ void CongregationManager::showCongregations() const {
         congregationList[i].displayCongregation();
     }
 }
+
+// TODO: store which congregation reserved the venue inside the venue object
+// TODO: check whether venue is free for reservation in that duration
+void CongregationManager::reserveVenue(string venue_name, string country,
+                                       string congregation_name,
+                                       VenueManager& venManager) {
+    int congIndex = congregationExists(congregation_name);
+    int venIndex = venManager.venueNameExists(venue_name, country);
+    if (congIndex == -1 || venIndex == -1) {
+        cout << "-1\n";
+        return;
+    }
+    Venue* venueToReserve = &venManager.venueList[venIndex];
+    congregationList[congIndex].reservations.push_back(venueToReserve);
+
+    cout << "0\n";
+}
+
+void CongregationManager::showReserved(string name) const {
+    int congIndex = congregationExists(name);
+    if (congIndex == -1) {
+        cout << "-1\n";
+        return;
+    }
+
+    Congregation cong = congregationList[congIndex];
+    int noOfReservations = cong.reservations.size();
+
+    cout << noOfReservations << endl;
+    for (int i = 0; i < noOfReservations; i++) {
+        cong.reservations[i]->displayVenue();
+    }
+}
+
+// Idea for the reservations is following
+// Store which venue was reserved inside the congregation
+// Also store which congregation reserved the venue inside the venue

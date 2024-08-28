@@ -1,9 +1,10 @@
+#include "congregation.h"
 #ifndef VENUE_H
 #define VENUE_H
-
 #include <iostream>
 #include <string>
 #include <vector>
+
 using namespace std;
 
 class Venue {
@@ -35,6 +36,8 @@ class VenueManager {
 
     /* Show venues */
     void showVenues(string location) const;
+
+    friend class CongregationManager;
 };
 
 #endif

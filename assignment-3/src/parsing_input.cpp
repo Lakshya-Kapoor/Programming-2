@@ -6,7 +6,6 @@
 
 #include "congregation.h"
 #include "utils.h"
-#include "venue.h"
 
 #define printError             \
     {                          \
