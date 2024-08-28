@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "date.h"
 #include "venue.h"
 using namespace std;
 
@@ -12,8 +13,8 @@ class Congregation {
     vector<Venue*> reservations;
     string name;
     string congregationType;
-    string startDate;
-    string endDate;
+    Date startDate;
+    Date endDate;
 
    public:
     /* Congregation constructor */

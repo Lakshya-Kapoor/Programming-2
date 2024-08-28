@@ -24,7 +24,7 @@ void parseAddCongregation(char* input) {
     int parsedItems =
         sscanf(input, "\"%[^\"]\" \"%[^\"]\" \"%[^\"]\" \"%[^\"]\"", name, type,
                startDate, endDate);
-    if (parsedItems < 4) {
+    if (parsedItems != 4) {
         printError
     }
     if (!validDate(startDate) || !validDate(endDate)) {
@@ -39,7 +39,7 @@ void parseAddCongregation(char* input) {
 void parseDelCongregation(char* input) {
     char name[100];
     int parsedItems = sscanf(input, "\"%[^\"]\"", name);
-    if (parsedItems < 1) {
+    if (parsedItems != 1) {
         printError
     }
     congManager.delCongregation(name);
@@ -54,7 +54,7 @@ void parseAddVenue(char* input) {
     int parsedItems =
         sscanf(input, "\"%[^\"]\" \"%[^\"]\" %d", name, location, &capacity);
 
-    if (parsedItems < 3) {
+    if (parsedItems != 3) {
         printError
     }
     venManager.addVenue(name, location, capacity);
@@ -64,7 +64,7 @@ void parseDelVenue(char* input) {
     char name[50];
     char country[50];
     int parsedItems = sscanf(input, "\"%[^\"]\" \"%[^\"]\"", name, country);
-    if (parsedItems < 2) {
+    if (parsedItems != 2) {
         printError
     }
     venManager.delVenue(name, country);
@@ -73,7 +73,7 @@ void parseDelVenue(char* input) {
 void parseShowVenues(char* input) {
     char location[100];
     int parsedItems = sscanf(input, "\"%[^\"]\"", location);
-    if (parsedItems < 1) {
+    if (parsedItems != 1) {
         printError
     }
     venManager.showVenues(location);

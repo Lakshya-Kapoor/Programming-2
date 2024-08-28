@@ -8,15 +8,15 @@ Congregation::Congregation(string name, string congregationType,
                            string startDate, string endDate) {
     this->name = name;
     this->congregationType = congregationType;
-    this->startDate = startDate;
-    this->endDate = endDate;
+    this->startDate = Date(startDate);
+    this->endDate = Date(endDate);
 }
 
 void Congregation::displayCongregation() const {
     cout << name << " ";
     cout << congregationType << " ";
-    cout << startDate << " ";
-    cout << endDate << endl;
+    cout << startDate.dateString() << " ";
+    cout << endDate.dateString() << endl;
 }
 
 int CongregationManager::congregationExists(string name) const {
