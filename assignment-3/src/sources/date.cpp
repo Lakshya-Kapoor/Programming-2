@@ -4,14 +4,14 @@
 #include <iostream>
 #include <string>
 
+#include "../includes/utils.h"
+
 using namespace std;
 
-Date::Date(string isoDate) {
-    int parsedItems = sscanf(isoDate.c_str(), "%d-%d-%d", &year, &month, &day);
-
-    if (parsedItems != 3) {
-        cout << "-1\n";
-    }
+Date::Date(int year, int month, int day) {
+    this->year = year;
+    this->month = month;
+    this->day = day;
 }
 
 Date::Date() {

@@ -14,7 +14,7 @@ class Date {
 
    public:
     // Converts iso date string to object
-    Date(string isoDate);
+    Date(int year, int month, int day);
 
     // Creats new object of current date
     Date();

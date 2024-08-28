@@ -18,8 +18,8 @@ class Congregation {
 
    public:
     /* Congregation constructor */
-    Congregation(string name, string congregationType, string startDate,
-                 string endDate);
+    Congregation(string name, string congregationType, Date startDate,
+                 Date endDate);
 
     /* Show congregation */
     void displayCongregation() const;
@@ -36,8 +36,8 @@ class CongregationManager {
 
    public:
     /* Add congregation */
-    void addCongregation(string name, string congregationType, string startDate,
-                         string endDate);
+    void addCongregation(string name, string congregationType, Date startDate,
+                         Date endDate);
 
     /* Delete congregation */
     void delCongregation(string name);

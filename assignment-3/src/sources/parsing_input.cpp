@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "../includes/congregation.h"
+#include "../includes/date.h"
 #include "../includes/utils.h"
 
 #define printError             \
@@ -21,19 +22,24 @@ void parseAddCongregation(char* input) {
     char type[50];
     char startDate[20];
     char endDate[20];
+    pair<bool, Date> p1, p2;
+
     int parsedItems =
         sscanf(input, "\"%[^\"]\" \"%[^\"]\" \"%[^\"]\" \"%[^\"]\"", name, type,
                startDate, endDate);
     if (parsedItems != 4) {
         printError
     }
-    if (!validDate(startDate) || !validDate(endDate)) {
-        printError
-    }
     if (!validCongregaionType(type)) {
         printError
     }
-    congManager.addCongregation(name, type, startDate, endDate);
+    p1 = validDate(startDate);
+    p2 = validDate(endDate);
+    if (!p1.first || !p2.first) {
+        printError
+    }
+
+    congManager.addCongregation(name, type, p1.second, p2.second);
 }
 
 void parseDelCongregation(char* input) {

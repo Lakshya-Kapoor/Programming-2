@@ -4,12 +4,12 @@
 #include <string>
 #include <vector>
 
-Congregation::Congregation(string name, string congregationType,
-                           string startDate, string endDate) {
+Congregation::Congregation(string name, string congregationType, Date startDate,
+                           Date endDate) {
     this->name = name;
     this->congregationType = congregationType;
-    this->startDate = Date(startDate);
-    this->endDate = Date(endDate);
+    this->startDate = startDate;
+    this->endDate = endDate;
 }
 
 void Congregation::displayCongregation() const {
@@ -27,7 +27,7 @@ int CongregationManager::congregationExists(string name) const {
 }
 
 void CongregationManager::addCongregation(string name, string congregationType,
-                                          string startDate, string endDate) {
+                                          Date startDate, Date endDate) {
     int index = congregationExists(name);
     if (index != -1) {
         cout << -1 << endl;
