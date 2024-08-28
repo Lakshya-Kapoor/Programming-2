@@ -1,11 +1,11 @@
-#include "parsing_input.h"
+#include "../includes/parsing_input.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "congregation.h"
-#include "utils.h"
+#include "../includes/congregation.h"
+#include "../includes/utils.h"
 
 #define printError             \
     {                          \

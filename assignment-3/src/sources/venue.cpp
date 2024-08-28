@@ -1,26 +1,11 @@
-#include "venue.h"
+#include "../includes/venue.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "../includes/utils.h"
 using namespace std;
-
-vector<string> parseLocation(string location) {
-    int start = 0;
-    int end = 0;
-
-    vector<string> res;
-
-    while (end < location.size()) {
-        if (location[end] == ':') {
-            res.push_back(location.substr(start, end - start));
-            start = end + 1;
-        }
-        end++;
-    }
-    res.push_back(location.substr(start, end - start));
-    return res;
-}
 
 Venue::Venue(string name, string location, int capacity) {
     this->name = name;

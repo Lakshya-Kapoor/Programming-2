@@ -1,4 +1,4 @@
-#include "congregation.h"
+#include "../includes/congregation.h"
 
 #include <iostream>
 #include <string>
@@ -82,6 +82,9 @@ void CongregationManager::reserveVenue(string venue_name, string country,
 
     cout << "0\n";
 }
+
+void CongregationManager::freeVenue(string venue_name, string country,
+                                    string congregation_name) {}
 
 void CongregationManager::showReserved(string name) const {
     int congIndex = congregationExists(name);

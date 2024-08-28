@@ -1,11 +1,28 @@
-#include "utils.h"
+#include "../includes/utils.h"
 
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-vector<int> extractDate(string date) {
+vector<string> parseLocation(string location) {
+    int start = 0;
+    int end = 0;
+
+    vector<string> res;
+
+    while (end < location.size()) {
+        if (location[end] == ':') {
+            res.push_back(location.substr(start, end - start));
+            start = end + 1;
+        }
+        end++;
+    }
+    res.push_back(location.substr(start, end - start));
+    return res;
+}
+
+vector<int> parseDate(string date) {
     vector<int> res;
 
     int start = 0;
@@ -35,7 +52,7 @@ bool isLeapYear(int year) {
 }
 
 bool validDate(string date) {
-    vector<int> res = extractDate(date);
+    vector<int> res = parseDate(date);
 
     int year = res[0];
     int month = res[1];
