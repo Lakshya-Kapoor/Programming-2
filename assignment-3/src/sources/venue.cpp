@@ -8,13 +8,16 @@
 #include "../includes/utils.h"
 using namespace std;
 
+/* Venue constructor */
 Venue::Venue(string name, Location location, int capacity)
     : name(name), location(location), capacity(capacity) {}
 
+/* Display venue */
 void Venue::displayVenue() const {
     cout << name << " " << location.locationString() << " " << capacity << endl;
 }
 
+/* Returns index of venue if exists in a country else -1 */
 int VenueManager::venueNameExists(string name, string country) const {
     int index = 0;
     for (Venue ven : venueList) {
@@ -26,26 +29,27 @@ int VenueManager::venueNameExists(string name, string country) const {
     return -1;
 }
 
+/* Add venue */
 void VenueManager::addVenue(string name, Location location, int capacity) {
     int index = venueNameExists(name, location.getCountry());
     if (index != -1) {
-        cout << -1 << "\n";
+        cout << "-1\n";
         return;
     }
 
-    Venue newVenue(name, location, capacity);
+    Venue newVenue = Venue(name, location, capacity);
     venueList.push_back(newVenue);
 
-    cout << 0 << "\n";
+    cout << "0\n";
 }
 
 // TODO venue can't be deleted if  any reservation for currently active or
 // future congregation
-
+/* Delete venue */
 void VenueManager::delVenue(string name, string country) {
     int index = venueNameExists(name, country);
     if (index == -1) {
-        cout << -1 << "\n";
+        cout << "-1\n";
         return;
     }
 
@@ -55,9 +59,10 @@ void VenueManager::delVenue(string name, string country) {
 
     venueList.pop_back();
 
-    cout << 0 << "\n";
+    cout << "0\n";
 }
 
+/* Show venues */
 void VenueManager::showVenues(string locationString) const {
     vector<string> res = parseLocationString(locationString);
     string city = res[0];
@@ -100,7 +105,7 @@ void VenueManager::showVenues(string locationString) const {
         }
     }
 
-    cout << venuesToDisplay.size() << "\n";
+    cout << venuesToDisplay.size() << endl;
     for (Venue ven : venuesToDisplay) {
         ven.displayVenue();
     }

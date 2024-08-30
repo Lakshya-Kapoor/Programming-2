@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+/* Congregation constructor */
 Congregation::Congregation(string name, string congregationType, Date startDate,
                            Date endDate)
     : name(name),
@@ -11,6 +12,7 @@ Congregation::Congregation(string name, string congregationType, Date startDate,
       startDate(startDate),
       endDate(endDate) {}
 
+/* Print the congregation name, type, start and end date */
 void Congregation::displayCongregation() const {
     cout << name << " ";
     cout << congregationType << " ";
@@ -18,6 +20,7 @@ void Congregation::displayCongregation() const {
     cout << endDate.dateString() << endl;
 }
 
+/* Returns index of congregation if exists else -1 */
 int CongregationManager::congregationExists(string name) const {
     for (int i = 0; i < congregationList.size(); i++) {
         if (congregationList[i].name == name) return i;
@@ -25,6 +28,7 @@ int CongregationManager::congregationExists(string name) const {
     return -1;
 }
 
+/* Add congregation */
 void CongregationManager::addCongregation(string name, string congregationType,
                                           Date startDate, Date endDate) {
     int index = congregationExists(name);
@@ -40,6 +44,7 @@ void CongregationManager::addCongregation(string name, string congregationType,
 }
 
 // TODO delete all reservations of venues and the events
+/* Delete congregation */
 void CongregationManager::delCongregation(string name) {
     int index = congregationExists(name);
     if (index == -1) {
@@ -56,6 +61,7 @@ void CongregationManager::delCongregation(string name) {
     cout << 0 << endl;
 }
 
+/* Show congregations */
 void CongregationManager::showCongregations() const {
     int n = congregationList.size();
 
@@ -67,6 +73,7 @@ void CongregationManager::showCongregations() const {
 
 // TODO: store which congregation reserved the venue inside the venue object
 // TODO: check whether venue is free for reservation in that duration
+/* Reserve a venue */
 void CongregationManager::reserveVenue(string venue_name, string country,
                                        string congregation_name,
                                        VenueManager& venManager) {
@@ -82,9 +89,11 @@ void CongregationManager::reserveVenue(string venue_name, string country,
     cout << "0\n";
 }
 
+/* Remove reservation from venue */
 void CongregationManager::freeVenue(string venue_name, string country,
                                     string congregation_name) {}
 
+/* Show reservations */
 void CongregationManager::showReserved(string name) const {
     int congIndex = congregationExists(name);
     if (congIndex == -1) {
@@ -104,3 +113,7 @@ void CongregationManager::showReserved(string name) const {
 // Idea for the reservations is following
 // Store which venue was reserved inside the congregation
 // Also store which congregation reserved the venue inside the venue
+
+// A better idea is to create a single reservation class
+// Both the venue and the congregation have a reservation object
+// Indicating the reservation was made by who and where was it made for

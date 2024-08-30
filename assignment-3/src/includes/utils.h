@@ -10,7 +10,7 @@
 using namespace std;
 
 extern vector<string> parseLocationString(string locationString);
-extern pair<bool, Date> validDate(string isoDate);
+extern pair<bool, Date> validDate(string isoDateString);
 extern bool validTime(int time);
 extern bool validCongregaionType(string type);
 

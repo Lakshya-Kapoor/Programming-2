@@ -35,9 +35,11 @@ bool isLeapYear(int year) {
     return false;
 }
 
-pair<bool, Date> validDate(string isoDate) {
+// Returns date object if a valid iso date string
+pair<bool, Date> validDate(string isoDateString) {
     int year, month, day;
-    int parsedItems = sscanf(isoDate.c_str(), "%d-%d-%d", &year, &month, &day);
+    int parsedItems =
+        sscanf(isoDateString.c_str(), "%d-%d-%d", &year, &month, &day);
 
     if (parsedItems != 3) {
         return {false, Date()};
