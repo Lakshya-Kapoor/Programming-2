@@ -8,11 +8,7 @@
 
 using namespace std;
 
-Date::Date(int year, int month, int day) {
-    this->year = year;
-    this->month = month;
-    this->day = day;
-}
+Date::Date(int year, int month, int day) : year(year), month(month), day(day) {}
 
 Date::Date() {
     auto now = chrono::system_clock::now();
@@ -26,5 +22,5 @@ Date::Date() {
 string Date::dateString() const {
     char buffer[11];
     snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d", year, month, day);
-    return std::string(buffer);
+    return string(buffer);
 }

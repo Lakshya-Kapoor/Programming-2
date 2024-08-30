@@ -6,6 +6,7 @@
 
 #include "../includes/congregation.h"
 #include "../includes/date.h"
+#include "../includes/location.h"
 #include "../includes/utils.h"
 
 #define printError             \
@@ -54,16 +55,26 @@ void parseDelCongregation(char* input) {
 void parseShowCongregations(char* input) { congManager.showCongregations(); }
 
 void parseAddVenue(char* input) {
-    char name[100];
-    char location[100];
+    char name[100], location[100];
     int capacity;
+    char city[40], state[40], postalCode[20], country[40];
+
     int parsedItems =
         sscanf(input, "\"%[^\"]\" \"%[^\"]\" %d", name, location, &capacity);
 
     if (parsedItems != 3) {
         printError
     }
-    venManager.addVenue(name, location, capacity);
+
+    parsedItems = sscanf(location, "%[^:]:%[^:]:%[^:]:%[^:]", city, state,
+                         postalCode, country);
+
+    if (parsedItems != 4) {
+        printError
+    }
+
+    venManager.addVenue(name, Location(city, state, postalCode, country),
+                        capacity);
 }
 
 void parseDelVenue(char* input) {
@@ -78,9 +89,12 @@ void parseDelVenue(char* input) {
 
 void parseShowVenues(char* input) {
     char location[100];
+    char city[40], state[40], postalCode[20], country[40];
+
     int parsedItems = sscanf(input, "\"%[^\"]\"", location);
     if (parsedItems != 1) {
         printError
     }
+
     venManager.showVenues(location);
 }

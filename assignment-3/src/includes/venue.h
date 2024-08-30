@@ -1,4 +1,5 @@
 #include "congregation.h"
+#include "location.h"
 #ifndef VENUE_H
 #define VENUE_H
 #include <iostream>
@@ -8,16 +9,19 @@
 using namespace std;
 
 class Venue {
-   public:
+   private:
     string name;
-    string city, state, postalCode, country;
+    Location location;
     int capacity;
 
+   public:
     /* Venue constructor */
-    Venue(string name, string location, int capacity);
+    Venue(string name, Location location, int capacity);
 
     /* Display venue */
     void displayVenue() const;
+
+    friend class VenueManager;
 };
 
 class VenueManager {
@@ -29,13 +33,13 @@ class VenueManager {
 
    public:
     /* Add venue */
-    void addVenue(string name, string location, int capacity);
+    void addVenue(string name, Location location, int capacity);
 
     /* Delete venue */
     void delVenue(string name, string country);
 
     /* Show venues */
-    void showVenues(string location) const;
+    void showVenues(string locationString) const;
 
     friend class CongregationManager;
 };

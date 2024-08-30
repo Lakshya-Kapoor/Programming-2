@@ -5,12 +5,11 @@
 #include <vector>
 
 Congregation::Congregation(string name, string congregationType, Date startDate,
-                           Date endDate) {
-    this->name = name;
-    this->congregationType = congregationType;
-    this->startDate = startDate;
-    this->endDate = endDate;
-}
+                           Date endDate)
+    : name(name),
+      congregationType(congregationType),
+      startDate(startDate),
+      endDate(endDate) {}
 
 void Congregation::displayCongregation() const {
     cout << name << " ";

@@ -5,20 +5,20 @@
 
 using namespace std;
 
-vector<string> parseLocation(string location) {
+vector<string> parseLocationString(string locationString) {
     int start = 0;
     int end = 0;
 
     vector<string> res;
 
-    while (end < location.size()) {
-        if (location[end] == ':') {
-            res.push_back(location.substr(start, end - start));
+    while (end < locationString.size()) {
+        if (locationString[end] == ':') {
+            res.push_back(locationString.substr(start, end - start));
             start = end + 1;
         }
         end++;
     }
-    res.push_back(location.substr(start, end - start));
+    res.push_back(locationString.substr(start, end - start));
     return res;
 }
 

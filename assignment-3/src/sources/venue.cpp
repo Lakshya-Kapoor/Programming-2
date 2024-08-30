@@ -4,28 +4,21 @@
 #include <string>
 #include <vector>
 
+#include "../includes/location.h"
 #include "../includes/utils.h"
 using namespace std;
 
-Venue::Venue(string name, string location, int capacity) {
-    this->name = name;
-    this->capacity = capacity;
-    vector<string> res = parseLocation(location);
-    this->city = res[0];
-    this->state = res[1];
-    this->postalCode = res[2];
-    this->country = res[3];
-}
+Venue::Venue(string name, Location location, int capacity)
+    : name(name), location(location), capacity(capacity) {}
 
 void Venue::displayVenue() const {
-    cout << name << " " << city << ":" << state << ":" << postalCode << ":"
-         << country << " " << capacity << endl;
+    cout << name << " " << location.locationString() << " " << capacity << endl;
 }
 
 int VenueManager::venueNameExists(string name, string country) const {
     int index = 0;
     for (Venue ven : venueList) {
-        if (ven.country == country && ven.name == name) {
+        if (ven.location.getCountry() == country && ven.name == name) {
             return index;
         }
         index++;
@@ -33,8 +26,8 @@ int VenueManager::venueNameExists(string name, string country) const {
     return -1;
 }
 
-void VenueManager::addVenue(string name, string location, int capacity) {
-    int index = venueNameExists(name, parseLocation(location)[3]);
+void VenueManager::addVenue(string name, Location location, int capacity) {
+    int index = venueNameExists(name, location.getCountry());
     if (index != -1) {
         cout << -1 << "\n";
         return;
@@ -65,32 +58,41 @@ void VenueManager::delVenue(string name, string country) {
     cout << 0 << "\n";
 }
 
-void VenueManager::showVenues(string location) const {
-    vector<string> res = parseLocation(location);
+void VenueManager::showVenues(string locationString) const {
+    vector<string> res = parseLocationString(locationString);
     string city = res[0];
     string state = res[1];
     string postalCode = res[2];
     string country = res[3];
 
+    // :::country
     bool type1 = (postalCode.empty() && !country.empty() && city.empty() &&
                   state.empty());
+
+    // city:state::country
     bool type2 = (!city.empty() && !state.empty() && !country.empty() &&
                   postalCode.empty());
+
+    // ::postal-code:country
     bool type3 = (!postalCode.empty() && !country.empty() && city.empty() &&
                   state.empty());
+
+    // city:state:postal-code:country
     bool type4 = (!city.empty() && !state.empty() && !postalCode.empty() &&
                   !country.empty());
 
     vector<Venue> venuesToDisplay;
 
     for (Venue ven : venueList) {
-        if (ven.country == country) {
-            if (type4 && ven.city == city && ven.state == state &&
-                ven.postalCode == postalCode) {
+        if (ven.location.getCountry() == country) {
+            if (type4 && ven.location.getCity() == city &&
+                ven.location.getState() == state &&
+                ven.location.getPostalCode() == postalCode) {
                 venuesToDisplay.push_back(ven);
-            } else if (type3 && ven.postalCode == postalCode) {
+            } else if (type3 && ven.location.getPostalCode() == postalCode) {
                 venuesToDisplay.push_back(ven);
-            } else if (type2 && ven.city == city && ven.state == state) {
+            } else if (type2 && ven.location.getCity() == city &&
+                       ven.location.getState() == state) {
                 venuesToDisplay.push_back(ven);
             } else if (type1) {
                 venuesToDisplay.push_back(ven);
