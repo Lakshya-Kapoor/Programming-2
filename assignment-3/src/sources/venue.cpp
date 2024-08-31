@@ -71,8 +71,6 @@ void VenueManager::addVenue(string name, Location location, int capacity) {
     cout << "0\n";
 }
 
-// TODO venue can't be deleted if  any reservation for currently active or
-// future congregation
 /* Delete venue */
 void VenueManager::delVenue(string name, string country) {
     int index = venueNameExists(name, country);
@@ -81,11 +79,17 @@ void VenueManager::delVenue(string name, string country) {
         return;
     }
 
-    for (int i = index; i < venueList.size() - 1; i++) {
-        venueList[i] = venueList[i + 1];
+    Date currDate = Date();
+    // Checking whether venue is reserved in some future date
+    for (int i = 0; i < venueList[index].reservations.size(); i++) {
+        if (venueList[index].reservations[i]->getStartDate() <= currDate &&
+            currDate <= venueList[index].reservations[i]->getEndDate()) {
+            cout << "-1\n";
+            return;
+        }
     }
 
-    venueList.pop_back();
+    venueList.erase(venueList.begin() + index);
 
     cout << "0\n";
 }

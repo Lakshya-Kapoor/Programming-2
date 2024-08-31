@@ -30,13 +30,13 @@ class CongregationManager {
    private:
     std::vector<Congregation> congregationList;  // List of congregations
 
+   public:
     int congregationExists(std::string name) const;
 
-   public:
     void addCongregation(std::string name, std::string congregationType,
                          Date startDate, Date endDate);
 
-    void delCongregation(std::string name);
+    void delCongregation(std::string name, VenueManager& venManager);
 
     void showCongregations() const;
 

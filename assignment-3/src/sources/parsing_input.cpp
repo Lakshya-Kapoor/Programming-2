@@ -54,7 +54,7 @@ void parseDelCongregation(char* input) {
     if (parsedItems != 1) {
         printError
     }
-    congManager.delCongregation(name);
+    congManager.delCongregation(name, venManager);
 }
 
 void parseShowCongregations(char* input) { congManager.showCongregations(); }

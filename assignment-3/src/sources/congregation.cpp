@@ -55,19 +55,24 @@ void CongregationManager::addCongregation(string name, string congregationType,
     printSuccess
 }
 
-// TODO delete all reservations of venues and the events
 /* Delete congregation */
-void CongregationManager::delCongregation(string name) {
+void CongregationManager::delCongregation(string name,
+                                          VenueManager& venManager) {
     int index = congregationExists(name);
     if (index == -1) {
         printError
     }
 
-    for (int i = index; i < congregationList.size() - 1; i++) {
-        congregationList[i] = congregationList[i + 1];
+    // Freeing all the reserved venues
+    vector<Reservation*> reservations = congregationList[index].reservations;
+    for (int i = 0; i < reservations.size(); i++) {
+        string venueName = reservations[i]->getVenue()->name;
+        string countryName = reservations[i]->getVenue()->location.getCountry();
+        freeVenue(venueName, countryName, name, venManager);
     }
 
-    congregationList.pop_back();
+    congregationList.erase(congregationList.begin() + index);
+
     printSuccess
 }
 
@@ -81,7 +86,6 @@ void CongregationManager::showCongregations() const {
     }
 }
 
-// TODO: check whether venue is free for reservation in that duration
 /* Reserve a venue */
 void CongregationManager::reserveVenue(string venue_name, string country,
                                        string congregation_name,
@@ -111,7 +115,8 @@ void CongregationManager::reserveVenue(string venue_name, string country,
     printSuccess
 }
 
-/* Remove reservation from venue */
+// TODO: also delete any events added to the reservation
+/* Remove reservation from venue and congregation*/
 void CongregationManager::freeVenue(string venue_name, string country,
                                     string congregation_name,
                                     VenueManager& venManager) {
