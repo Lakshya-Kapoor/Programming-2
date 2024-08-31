@@ -8,6 +8,7 @@
 #include "../includes/date.h"
 #include "../includes/location.h"
 #include "../includes/utils.h"
+#include "../includes/venue.h"
 
 using namespace std;
 

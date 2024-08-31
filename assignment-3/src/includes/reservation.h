@@ -1,9 +1,7 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 
-#include "congregation.h"
 #include "date.h"
-#include "venue.h"
 
 class Congregation;
 class Venue;

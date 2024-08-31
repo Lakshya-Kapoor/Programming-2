@@ -5,10 +5,9 @@
 #include <vector>
 
 #include "date.h"
-#include "reservation.h"
-#include "venue.h"
 
 class VenueManager;
+class Reservation;
 
 class Congregation {
    private:

@@ -1,14 +1,11 @@
 #ifndef VENUE_H
 #define VENUE_H
 
-#include <iostream>
 #include <string>
 #include <vector>
 
-#include "congregation.h"
 #include "date.h"
 #include "location.h"
-#include "reservation.h"
 
 class Reservation;
 

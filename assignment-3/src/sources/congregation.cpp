@@ -13,6 +13,9 @@
 #include <string>
 #include <vector>
 
+#include "../includes/reservation.h"
+#include "../includes/venue.h"
+
 using namespace std;
 
 /* Congregation constructor */
