@@ -7,11 +7,10 @@
 
 #include "date.h"
 
-using namespace std;
-
-extern vector<string> parseLocationString(string locationString);
-extern pair<bool, Date> validDate(string isoDateString);
+extern std::vector<std::string> parseLocationString(std::string locationString);
+extern std::pair<bool, Date> validDate(std::string isoDateString);
+extern int daysInMonth(int year, int month);
 extern bool validTime(int time);
-extern bool validCongregaionType(string type);
+extern bool validCongregaionType(std::string type);
 
 #endif

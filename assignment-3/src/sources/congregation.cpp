@@ -1,8 +1,19 @@
 #include "../includes/congregation.h"
 
+#define printError          \
+    {                       \
+        cout << -1 << endl; \
+        return;             \
+    }
+
+#define printSuccess \
+    { cout << 0 << endl; }
+
 #include <iostream>
 #include <string>
 #include <vector>
+
+using namespace std;
 
 /* Congregation constructor */
 Congregation::Congregation(string name, string congregationType, Date startDate,
@@ -33,14 +44,12 @@ void CongregationManager::addCongregation(string name, string congregationType,
                                           Date startDate, Date endDate) {
     int index = congregationExists(name);
     if (index != -1) {
-        cout << -1 << endl;
-        return;
+        printError
     }
 
     Congregation newCongregation(name, congregationType, startDate, endDate);
     congregationList.push_back(newCongregation);
-
-    cout << 0 << endl;
+    printSuccess
 }
 
 // TODO delete all reservations of venues and the events
@@ -48,8 +57,7 @@ void CongregationManager::addCongregation(string name, string congregationType,
 void CongregationManager::delCongregation(string name) {
     int index = congregationExists(name);
     if (index == -1) {
-        cout << -1 << endl;
-        return;
+        printError
     }
 
     for (int i = index; i < congregationList.size() - 1; i++) {
@@ -57,8 +65,7 @@ void CongregationManager::delCongregation(string name) {
     }
 
     congregationList.pop_back();
-
-    cout << 0 << endl;
+    printSuccess
 }
 
 /* Show congregations */
@@ -71,7 +78,6 @@ void CongregationManager::showCongregations() const {
     }
 }
 
-// TODO: store which congregation reserved the venue inside the venue object
 // TODO: check whether venue is free for reservation in that duration
 /* Reserve a venue */
 void CongregationManager::reserveVenue(string venue_name, string country,
@@ -80,13 +86,26 @@ void CongregationManager::reserveVenue(string venue_name, string country,
     int congIndex = congregationExists(congregation_name);
     int venIndex = venManager.venueNameExists(venue_name, country);
     if (congIndex == -1 || venIndex == -1) {
-        cout << "-1\n";
-        return;
+        printError
     }
-    Venue* venueToReserve = &venManager.venueList[venIndex];
-    congregationList[congIndex].reservations.push_back(venueToReserve);
+    Venue& venue = venManager.venueList[venIndex];
+    Congregation& congregation = congregationList[congIndex];
 
-    cout << "0\n";
+    // Checking whether venue is free to be reserved from start to end date
+    Date dateIterator = congregation.startDate;
+    while (!(dateIterator > congregation.endDate)) {
+        if (venue.isReserved(dateIterator)) {
+            printError
+        }
+        dateIterator++;
+    }
+
+    Reservation* newReservation = new Reservation(
+        congregation.startDate, congregation.endDate, &congregation, &venue);
+
+    congregation.reservations.push_back(newReservation);
+    venue.addReservation(newReservation);
+    printSuccess
 }
 
 /* Remove reservation from venue */
@@ -95,25 +114,16 @@ void CongregationManager::freeVenue(string venue_name, string country,
 
 /* Show reservations */
 void CongregationManager::showReserved(string name) const {
-    int congIndex = congregationExists(name);
-    if (congIndex == -1) {
-        cout << "-1\n";
-        return;
-    }
+    // int congIndex = congregationExists(name);
+    // if (congIndex == -1) {
+    //     printError
+    // }
 
-    Congregation cong = congregationList[congIndex];
-    int noOfReservations = cong.reservations.size();
+    // Congregation cong = congregationList[congIndex];
+    // int noOfReservations = cong.reservations.size();
 
-    cout << noOfReservations << endl;
-    for (int i = 0; i < noOfReservations; i++) {
-        cong.reservations[i]->displayVenue();
-    }
+    // cout << noOfReservations << endl;
+    // for (int i = 0; i < noOfReservations; i++) {
+    //     cong.reservations[i]->displayVenue();
+    // }
 }
-
-// Idea for the reservations is following
-// Store which venue was reserved inside the congregation
-// Also store which congregation reserved the venue inside the venue
-
-// A better idea is to create a single reservation class
-// Both the venue and the congregation have a reservation object
-// Indicating the reservation was made by who and where was it made for

@@ -1,10 +1,7 @@
 #ifndef DATE_H
 #define DATE_H
 
-#include <iostream>
 #include <string>
-
-using namespace std;
 
 class Date {
    private:
@@ -13,14 +10,17 @@ class Date {
     int day;
 
    public:
-    // Converts iso date string to object
-    Date(int year, int month, int day);
-
-    // Creats new object of current date
     Date();
-
-    // Returns iso date string from Date object
-    string dateString() const;
+    Date(int year, int month, int day);
+    Date(const Date& other);
+    Date& operator=(const Date& other);
+    std::string dateString() const;
+    bool operator==(const Date& other) const;
+    bool operator<(const Date& other) const;
+    bool operator>(const Date& other) const;
+    bool operator<=(const Date& other) const;
+    bool operator>=(const Date& other) const;
+    void operator++(int n);
 };
 
 #endif

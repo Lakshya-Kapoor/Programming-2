@@ -4,7 +4,9 @@
 #include <string>
 #include <vector>
 
+#include "../includes/date.h"
 #include "../includes/location.h"
+#include "../includes/reservation.h"
 #include "../includes/utils.h"
 using namespace std;
 
@@ -15,6 +17,22 @@ Venue::Venue(string name, Location location, int capacity)
 /* Display venue */
 void Venue::displayVenue() const {
     cout << name << " " << location.locationString() << " " << capacity << endl;
+}
+
+/* Checks whether venue is reserved on a particular date */
+bool Venue::isReserved(Date date) const {
+    for (int i = 0; i < reservations.size(); i++) {
+        if (reservations[i]->getStartDate() <= date &&
+            date <= reservations[i]->getEndDate()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/* Add reservation to a venue */
+void Venue::addReservation(Reservation* reservation) {
+    reservations.push_back(reservation);
 }
 
 /* Returns index of venue if exists in a country else -1 */

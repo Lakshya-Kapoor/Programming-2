@@ -1,23 +1,25 @@
 #ifndef CONGREGATION_H
 #define CONGREGATION_H
-#include <iostream>
+
 #include <string>
 #include <vector>
 
 #include "date.h"
+#include "reservation.h"
 #include "venue.h"
-using namespace std;
+
+class VenueManager;
 
 class Congregation {
    private:
-    vector<Venue*> reservations; /* List of reservations */
-    string name;
-    string congregationType;
+    std::string name;
+    std::string congregationType;
     Date startDate;
     Date endDate;
+    std::vector<Reservation*> reservations;  // List of reservations
 
    public:
-    Congregation(string name, string congregationType, Date startDate,
+    Congregation(std::string name, std::string congregationType, Date startDate,
                  Date endDate);
 
     void displayCongregation() const;
@@ -27,24 +29,25 @@ class Congregation {
 
 class CongregationManager {
    private:
-    vector<Congregation> congregationList;  // List of congregations
+    std::vector<Congregation> congregationList;  // List of congregations
 
-    int congregationExists(string name) const;
+    int congregationExists(std::string name) const;
 
    public:
-    void addCongregation(string name, string congregationType, Date startDate,
-                         Date endDate);
+    void addCongregation(std::string name, std::string congregationType,
+                         Date startDate, Date endDate);
 
-    void delCongregation(string name);
+    void delCongregation(std::string name);
 
     void showCongregations() const;
 
-    void reserveVenue(string venue_name, string country,
-                      string congregation_name, VenueManager& venManager);
+    void reserveVenue(std::string venue_name, std::string country,
+                      std::string congregation_name, VenueManager& venManager);
 
-    void freeVenue(string venue_name, string country, string congregation_name);
+    void freeVenue(std::string venue_name, std::string country,
+                   std::string congregation_name);
 
-    void showReserved(string name) const;
+    void showReserved(std::string name) const;
 };
 
 #endif

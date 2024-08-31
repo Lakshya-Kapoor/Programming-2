@@ -35,6 +35,15 @@ bool isLeapYear(int year) {
     return false;
 }
 
+int daysInMonth(int year, int month) {
+    if (month == 2) {
+        return isLeapYear(year) ? 29 : 28;
+    }
+
+    static int days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    return days[month];
+}
+
 // Returns date object if a valid iso date string
 pair<bool, Date> validDate(string isoDateString) {
     int year, month, day;
@@ -44,20 +53,11 @@ pair<bool, Date> validDate(string isoDateString) {
     if (parsedItems != 3) {
         return {false, Date()};
     }
-
-    int daysInMonth[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    if ((month < 1 || month > 12)) {
+    if (month < 1 || month > 12) {
         return {false, Date()};
     }
-    if (month != 2) {
-        if (day < 1 || day > daysInMonth[month]) {
-            return {false, Date()};
-        }
-    } else {
-        if (isLeapYear(year) ? (day < 1 || day > 29) : (day < 1 || day > 28)) {
-            return {false, Date()};
-        }
+    if (day < 1 || day > daysInMonth(year, month)) {
+        return {false, Date()};
     }
     return {true, Date(year, month, day)};
 }

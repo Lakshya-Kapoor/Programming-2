@@ -2,19 +2,19 @@
 #define LOCATION_H
 
 #include <string>
-using namespace std;
 
 class Location {
    private:
-    string city, state, postalCode, country;
+    std::string city, state, postalCode, country;
 
    public:
-    Location(string city, string state, string postalCode, string country);
-    string locationString() const;
-    string getCountry() const;
-    string getPostalCode() const;
-    string getState() const;
-    string getCity() const;
+    Location(std::string city, std::string state, std::string postalCode,
+             std::string country);
+    std::string locationString() const;
+    std::string getCountry() const;
+    std::string getPostalCode() const;
+    std::string getState() const;
+    std::string getCity() const;
 };
 
 #endif

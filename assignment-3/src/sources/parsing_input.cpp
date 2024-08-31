@@ -9,6 +9,8 @@
 #include "../includes/location.h"
 #include "../includes/utils.h"
 
+using namespace std;
+
 #define printError             \
     {                          \
         printf("-1\nError\n"); \
@@ -36,7 +38,9 @@ void parseAddCongregation(char* input) {
     }
     p1 = validDate(startDate);
     p2 = validDate(endDate);
-    if (!p1.first || !p2.first) {
+
+    // Checks whether dates are valid and startDate < endDate
+    if (!p1.first || !p2.first || !(p1.second < p2.second)) {
         printError
     }
 
