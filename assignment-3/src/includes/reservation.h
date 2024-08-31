@@ -18,6 +18,8 @@ class Reservation {
                 Venue* venue);
     Date getStartDate() const;
     Date getEndDate() const;
+    Congregation* getCongregation() const;
+    Venue* getVenue() const;
 };
 
 #endif

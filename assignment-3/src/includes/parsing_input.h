@@ -13,4 +13,10 @@ extern void parseAddVenue(char *input);
 extern void parseDelVenue(char *input);
 extern void parseShowVenues(char *input);
 
+/* Reservation-related functions */
+
+extern void parseReserveVenue(char *input);
+extern void parseFreeVenue(char *input);
+extern void parseShowReserved(char *input);
+
 #endif

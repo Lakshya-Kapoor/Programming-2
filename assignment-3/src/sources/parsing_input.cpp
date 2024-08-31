@@ -103,3 +103,33 @@ void parseShowVenues(char* input) {
 
     venManager.showVenues(location);
 }
+
+void parseReserveVenue(char* input) {
+    char venue_name[100], congregation_name[100], country[40];
+    int parsedItems = sscanf(input, "\"%[^\"]\" \"%[^\"]\" \"%[^\"]\"",
+                             venue_name, country, congregation_name);
+    if (parsedItems != 3) {
+        printError
+    }
+    congManager.reserveVenue(venue_name, country, congregation_name,
+                             venManager);
+}
+
+void parseFreeVenue(char* input) {
+    char venue_name[100], country[40], congregation_name[100];
+    int parsedItems = sscanf(input, "\"%[^\"]\" \"%[^\"]\" \"%[^\"]\"",
+                             venue_name, country, congregation_name);
+    if (parsedItems != 3) {
+        printError
+    }
+    congManager.freeVenue(venue_name, country, congregation_name, venManager);
+}
+
+void parseShowReserved(char* input) {
+    char congregation_name[100];
+    int parsedItems = sscanf(input, "\"%[^\"]\"", congregation_name);
+    if (parsedItems != 1) {
+        printError
+    }
+    congManager.showReserved(congregation_name);
+}

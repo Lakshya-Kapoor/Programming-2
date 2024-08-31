@@ -35,6 +35,16 @@ void Venue::addReservation(Reservation* reservation) {
     reservations.push_back(reservation);
 }
 
+/* Delete reservation from a venue */
+void Venue::delReservation(Reservation* reservation) {
+    for (int i = 0; i < reservations.size(); i++) {
+        if (reservations[i] == reservation) {
+            reservations.erase(reservations.begin() + i);
+            break;
+        }
+    }
+}
+
 /* Returns index of venue if exists in a country else -1 */
 int VenueManager::venueNameExists(string name, string country) const {
     int index = 0;

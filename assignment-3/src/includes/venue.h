@@ -22,8 +22,8 @@ class Venue {
     void displayVenue() const;
 
     bool isReserved(Date date) const;
-
     void addReservation(Reservation* reservation);
+    void delReservation(Reservation* reservation);
 
     friend class VenueManager;
 };

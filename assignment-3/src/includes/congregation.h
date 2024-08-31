@@ -44,7 +44,7 @@ class CongregationManager {
                       std::string congregation_name, VenueManager& venManager);
 
     void freeVenue(std::string venue_name, std::string country,
-                   std::string congregation_name);
+                   std::string congregation_name, VenueManager& venManager);
 
     void showReserved(std::string name) const;
 };

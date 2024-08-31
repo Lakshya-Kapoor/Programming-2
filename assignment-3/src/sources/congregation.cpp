@@ -113,20 +113,43 @@ void CongregationManager::reserveVenue(string venue_name, string country,
 
 /* Remove reservation from venue */
 void CongregationManager::freeVenue(string venue_name, string country,
-                                    string congregation_name) {}
+                                    string congregation_name,
+                                    VenueManager& venManager) {
+    int congIndex = congregationExists(congregation_name);
+    int venIndex = venManager.venueNameExists(venue_name, country);
+    if (congIndex == -1 || venIndex == -1) {
+        printError
+    }
+
+    Congregation& cong = congregationList[congIndex];
+    Venue& venue = venManager.venueList[venIndex];
+
+    Reservation* reservation = nullptr;
+    for (int i = 0; i < cong.reservations.size(); i++) {
+        if (cong.reservations[i]->getVenue() == &venue) {
+            reservation = cong.reservations[i];
+            cong.reservations.erase(cong.reservations.begin() + i);
+            break;
+        }
+    }
+    venue.delReservation(reservation);
+    delete reservation;
+
+    printSuccess
+}
 
 /* Show reservations */
 void CongregationManager::showReserved(string name) const {
-    // int congIndex = congregationExists(name);
-    // if (congIndex == -1) {
-    //     printError
-    // }
+    int congIndex = congregationExists(name);
+    if (congIndex == -1) {
+        printError
+    }
 
-    // Congregation cong = congregationList[congIndex];
-    // int noOfReservations = cong.reservations.size();
+    Congregation congregation = congregationList[congIndex];
+    int noOfReservations = congregation.reservations.size();
 
-    // cout << noOfReservations << endl;
-    // for (int i = 0; i < noOfReservations; i++) {
-    //     cong.reservations[i]->displayVenue();
-    // }
+    cout << noOfReservations << endl;
+    for (int i = 0; i < noOfReservations; i++) {
+        congregation.reservations[i]->getVenue()->displayVenue();
+    }
 }
