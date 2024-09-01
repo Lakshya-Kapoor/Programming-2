@@ -5,12 +5,18 @@
 using namespace std;
 
 /* Location constructor */
-Location::Location(string city, string state, string postalCode, string country)
-    : city(city), state(state), postalCode(postalCode), country(country) {}
+Location::Location(string address, string city, string state, string postalCode,
+                   string country)
+    : address(address),
+      city(city),
+      state(state),
+      postalCode(postalCode),
+      country(country) {}
 
 /* Returns location string "city:state:postal-code:country" */
 string Location::locationString() const {
-    return city + ":" + state + ":" + postalCode + ":" + country;
+    return address + ":" + city + ":" + state + ":" + postalCode + ":" +
+           country;
 }
 
 /* Get country */

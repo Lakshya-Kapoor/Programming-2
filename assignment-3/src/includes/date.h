@@ -21,6 +21,7 @@ class Date {
     bool operator<=(const Date& other) const;
     bool operator>=(const Date& other) const;
     void operator++(int n);
+    int operator-(const Date& other) const;
 };
 
 #endif

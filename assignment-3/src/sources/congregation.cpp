@@ -1,9 +1,9 @@
 #include "../includes/congregation.h"
 
-#define printError          \
-    {                       \
-        cout << -1 << endl; \
-        return;             \
+#define printError                   \
+    {                                \
+        cout << "-1\nError" << endl; \
+        return;                      \
     }
 
 #define printSuccess \
@@ -33,6 +33,9 @@ void Congregation::displayCongregation() const {
     cout << startDate.dateString() << " ";
     cout << endDate.dateString() << endl;
 }
+
+/* Get congregation name */
+string Congregation::getName() const { return name; }
 
 /* Returns index of congregation if exists else -1 */
 int CongregationManager::congregationExists(string name) const {
@@ -100,7 +103,7 @@ void CongregationManager::reserveVenue(string venue_name, string country,
 
     // Checking whether venue is free to be reserved from start to end date
     Date dateIterator = congregation.startDate;
-    while (!(dateIterator > congregation.endDate)) {
+    while (dateIterator <= congregation.endDate) {
         if (venue.isReserved(dateIterator)) {
             printError
         }
@@ -136,6 +139,10 @@ void CongregationManager::freeVenue(string venue_name, string country,
             cong.reservations.erase(cong.reservations.begin() + i);
             break;
         }
+    }
+    // No reservation made by congregation in this venue
+    if (reservation == nullptr) {
+        printError
     }
     venue.delReservation(reservation);
     delete reservation;

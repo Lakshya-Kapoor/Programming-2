@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "date.h"
+#include "time.h"
 
 class VenueManager;
 class Reservation;
@@ -20,7 +21,7 @@ class Congregation {
    public:
     Congregation(std::string name, std::string congregationType, Date startDate,
                  Date endDate);
-
+    std::string getName() const;
     void displayCongregation() const;
 
     friend class CongregationManager;

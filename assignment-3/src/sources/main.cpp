@@ -44,6 +44,12 @@ int main() {
             parseDelCongregation(input + strlen(command) + 1);
         } else if (strcmp(command, "showCongregations") == 0) {
             parseShowCongregations(input + strlen(command) + 1);
+        } else if (strcmp(command, "reserveVenue") == 0) {
+            parseReserveVenue(input + strlen(command) + 1);
+        } else if (strcmp(command, "showReserved") == 0) {
+            parseShowReserved(input + strlen(command) + 1);
+        } else if (strcmp(command, "freeVenue") == 0) {
+            parseFreeVenue(input + strlen(command) + 1);
         } else if (strcmp(command, "End") == 0) {
             break;
         }

@@ -5,11 +5,11 @@
 
 class Location {
    private:
-    std::string city, state, postalCode, country;
+    std::string address, city, state, postalCode, country;
 
    public:
-    Location(std::string city, std::string state, std::string postalCode,
-             std::string country);
+    Location(std::string address, std::string city, std::string state,
+             std::string postalCode, std::string country);
     std::string locationString() const;
     std::string getCountry() const;
     std::string getPostalCode() const;

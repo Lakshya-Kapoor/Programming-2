@@ -19,4 +19,10 @@ extern void parseReserveVenue(char *input);
 extern void parseFreeVenue(char *input);
 extern void parseShowReserved(char *input);
 
+/*  Event-related functions */
+extern void parseAddEvent(char *input);
+extern void parseDelEvent(char *input);
+extern void parseShowEvents(char *input);
+extern void parseShowCalendar(char *input);
+
 #endif

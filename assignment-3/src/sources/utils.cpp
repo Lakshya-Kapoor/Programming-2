@@ -63,6 +63,35 @@ pair<bool, Date> validDate(string isoDateString) {
 }
 
 bool validCongregaionType(string type) {
-    return type == "Games" || type == "Concerts" || type == "Conventions" ||
-           type == "Conferences";
+    return type == "Games" || type == "Concert" || type == "Convention" ||
+           type == "Conference";
+}
+
+pair<bool, Time> validTime(string timeString) {
+    int hour, minute;
+    int parsedItems = sscanf(timeString.c_str(), "%d:%d", &hour, &minute);
+    if (parsedItems != 2) {
+        return {false, Time()};
+    }
+    if (hour >= 0 && hour < 24 && minute >= 0 && minute < 60 &&
+        minute % 15 == 0) {
+        return {true, Time(hour, minute)};
+    }
+    return {false, Time()};
+}
+
+int getLocationType(string city, string state, string postalCode,
+                    string country) {
+    if (postalCode.empty() && !country.empty() && city.empty() && state.empty())
+        return 1;
+    if (!city.empty() && !state.empty() && !country.empty() &&
+        postalCode.empty())
+        return 2;
+    if (!postalCode.empty() && !country.empty() && city.empty() &&
+        state.empty())
+        return 3;
+    if (!city.empty() && !state.empty() && !postalCode.empty() &&
+        !country.empty())
+        return 4;
+    return -1;
 }
