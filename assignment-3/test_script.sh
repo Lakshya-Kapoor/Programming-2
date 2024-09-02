@@ -8,9 +8,11 @@ do
     if ! diff -w out/output.txt "out/result_$i.txt"; then
         echo "Test $i failed"
         test_passed=false
+    else
+        echo "Test $i passed"
     fi
 done
 
 if $test_passed; then
-    echo "Tests passed"
+    echo "All Tests passed successfully"
 fi

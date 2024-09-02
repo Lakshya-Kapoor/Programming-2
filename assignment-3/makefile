@@ -14,7 +14,7 @@ test: compile
 	bash test_script.sh
 
 run: compile
-	./program > out/output.txt
+	./program
 
 clean:
 	rm -rf program

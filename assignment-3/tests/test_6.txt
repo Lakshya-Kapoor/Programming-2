@@ -19,7 +19,7 @@ addEvent "Paris Olympics 2024" "Paris stadium" "France" "2024-10-02" "12:00" "15
 addEvent "U-17 Football World cup" "Parc des Princes" "France" "2024-11-02" "18:00" "21:00" "Spain vs England"
 showEvents "Paris stadium" "France" "2024-10-01" 
 showEvents "Parc des Princes" "France" "2024-11-02"
-deleteEvent "Paris Olympics 2024" "Paris stadium" "France" "2024-10-01" "12:00" "Javelin Throw"
+deleteEvent  "Paris Olympics 2024" "Paris stadium" "France" "2024-10-01" "12:00" "Javelin Throw"
 showEvents "Paris stadium" "France" "2024-10-01"
 deleteVenue "Parc des Princes" "France"
 showCalendar "U-17 Football World cup" "Parc des Princes" "France"

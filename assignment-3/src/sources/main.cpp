@@ -32,32 +32,37 @@ int main() {
         // Extracting the command
         sscanf(input, "%s", command);
 
+        int idx = strlen(command);
+        while (idx < strlen(input) && input[idx] == ' ') {
+            idx++;
+        }
+
         if (strcmp(command, "addVenue") == 0) {
-            parseAddVenue(input + strlen(command) + 1);
+            parseAddVenue(input + idx);
         } else if (strcmp(command, "deleteVenue") == 0) {
-            parseDelVenue(input + strlen(command) + 1);
+            parseDelVenue(input + idx);
         } else if (strcmp(command, "showVenues") == 0) {
-            parseShowVenues(input + strlen(command) + 1);
+            parseShowVenues(input + idx);
         } else if (strcmp(command, "addCongregation") == 0) {
-            parseAddCongregation(input + strlen(command) + 1);
+            parseAddCongregation(input + idx);
         } else if (strcmp(command, "deleteCongregation") == 0) {
-            parseDelCongregation(input + strlen(command) + 1);
+            parseDelCongregation(input + idx);
         } else if (strcmp(command, "showCongregations") == 0) {
-            parseShowCongregations(input + strlen(command) + 1);
+            parseShowCongregations(input + idx);
         } else if (strcmp(command, "reserveVenue") == 0) {
-            parseReserveVenue(input + strlen(command) + 1);
+            parseReserveVenue(input + idx);
         } else if (strcmp(command, "showReserved") == 0) {
-            parseShowReserved(input + strlen(command) + 1);
+            parseShowReserved(input + idx);
         } else if (strcmp(command, "freeVenue") == 0) {
-            parseFreeVenue(input + strlen(command) + 1);
+            parseFreeVenue(input + idx);
         } else if (strcmp(command, "addEvent") == 0) {
-            parseAddEvent(input + strlen(command) + 1);
+            parseAddEvent(input + idx);
         } else if (strcmp(command, "deleteEvent") == 0) {
-            parseDelEvent(input + strlen(command) + 1);
+            parseDelEvent(input + idx);
         } else if (strcmp(command, "showEvents") == 0) {
-            parseShowEvents(input + strlen(command) + 1);
+            parseShowEvents(input + idx);
         } else if (strcmp(command, "showCalendar") == 0) {
-            parseShowCalendar(input + strlen(command) + 1);
+            parseShowCalendar(input + idx);
         } else if (strcmp(command, "End") == 0) {
             break;
         }
