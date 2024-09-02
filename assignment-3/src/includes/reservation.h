@@ -26,11 +26,12 @@ class Reservation {
     Date getEndDate() const;
     Congregation* getCongregation() const;
     Venue* getVenue() const;
-    void addEvent(int index, Event* event);
+    bool addEvent(int index, Event* event);
     void delEvent(int index, Event* event);
     void showEvents(int index) const;
     void showCalendar() const;
     Event* getEvent(int index, Time startTime, std::string eventName) const;
+    ~Reservation();
 };
 
 #endif

@@ -11,6 +11,7 @@ class Time {
     Time();
     Time(int hour, int minute);
     Time operator-(const Time& other) const;
+    Time operator+(const Time& other) const;
     bool operator<(const Time& other) const;
     bool operator==(const Time& other) const;
     bool operator>(const Time& other) const;

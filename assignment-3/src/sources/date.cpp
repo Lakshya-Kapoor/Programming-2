@@ -74,20 +74,22 @@ bool Date::operator>(const Date& other) const {
 
 // Returns whether date1 <= date2
 bool Date::operator<=(const Date& other) const {
-    return *this == other && *this < other;
+    return *this == other || *this < other;
 }
 
 // Returns whether date1 >= date2
 bool Date::operator>=(const Date& other) const {
-    return *this == other && *this > other;
+    return *this == other || *this > other;
 }
 
 // Returns number of days between two days, -1 if date1 < date2
 int Date::operator-(const Date& other) const {
-    if (*this < other) return -1;
+    if (*this < other) {
+        return -1;
+    }
     int days = 0;
-    Date temp = *this;
-    while (!(temp == other)) {
+    Date temp = other;
+    while (temp < *this) {
         temp++;
         days++;
     }

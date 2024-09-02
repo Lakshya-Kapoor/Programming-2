@@ -9,7 +9,20 @@ Time::Time() {};
 Time::Time(int hour, int minute) : hour(hour), minute(minute) {};
 
 Time Time::operator-(const Time& other) const {
-    return Time(this->hour - other.hour, this->minute - other.minute);
+    int thisMin = this->hour * 60 + this->minute;
+    int otherMin = other.hour * 60 + other.minute;
+
+    Time res;
+    res.hour = (thisMin - otherMin) / 60;
+    res.minute = (thisMin - otherMin) % 60;
+    return res;
+}
+
+Time Time::operator+(const Time& other) const {
+    int min = (this->minute + other.minute);
+    int hour = this->hour + other.hour + (min >= 60 ? 1 : 0);
+
+    return Time(hour, min % 60);
 }
 
 bool Time::operator<(const Time& other) const {
@@ -26,7 +39,8 @@ bool Time::operator>(const Time& other) const {
 }
 
 ostream& operator<<(ostream& os, const Time& time) {
-    os << time.hour << ":" << time.minute;
+    os << (time.hour < 10 ? "0" : "") << time.hour << ":"
+       << (time.minute < 10 ? "0" : "") << time.minute;
     return os;
 }
 

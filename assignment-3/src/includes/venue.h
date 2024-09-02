@@ -41,10 +41,11 @@ class VenueManager {
     void delVenue(string name, string country);
     void showVenues(string locationString) const;
     void addEvent(string congregation_name, string venue_name, string country,
-                  Date date, Time startTime, Time endTime, string event_name);
+                  Date date, Time startTime, Time endTime,
+                  string event_name) const;
 
     void delEvent(string congregation_name, string venue_name, string country,
-                  Date date, Time startTime, string event_name);
+                  Date date, Time startTime, string event_name) const;
     void showEvents(string venue_name, string country, Date date) const;
     void showCalendar(string congregation_name, string venue_name,
                       string country) const;

@@ -13,10 +13,10 @@ int main() {
     FILE *file;
 
     char file_name[50];
-    // scanf("%s", file_name);
+    scanf("%s", file_name);
 
     // Open the file in read mode
-    file = fopen("tests/input.txt", "r");
+    file = fopen(file_name, "r");
 
     // Check if the file was opened successfully
     if (file == NULL) {
@@ -50,6 +50,14 @@ int main() {
             parseShowReserved(input + strlen(command) + 1);
         } else if (strcmp(command, "freeVenue") == 0) {
             parseFreeVenue(input + strlen(command) + 1);
+        } else if (strcmp(command, "addEvent") == 0) {
+            parseAddEvent(input + strlen(command) + 1);
+        } else if (strcmp(command, "deleteEvent") == 0) {
+            parseDelEvent(input + strlen(command) + 1);
+        } else if (strcmp(command, "showEvents") == 0) {
+            parseShowEvents(input + strlen(command) + 1);
+        } else if (strcmp(command, "showCalendar") == 0) {
+            parseShowCalendar(input + strlen(command) + 1);
         } else if (strcmp(command, "End") == 0) {
             break;
         }

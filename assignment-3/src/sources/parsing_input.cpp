@@ -127,7 +127,8 @@ void parseFreeVenue(char* input) {
     if (parsedItems != 3) {
         printError
     }
-    congManager.freeVenue(venue_name, country, congregation_name, venManager);
+    congManager.freeVenue(venue_name, country, congregation_name, venManager,
+                          true);
 }
 
 void parseShowReserved(char* input) {
@@ -159,10 +160,9 @@ void parseAddEvent(char* input) {
     // Checks time validity
     pair<bool, Time> p2 = validTime(startTime);
     pair<bool, Time> p3 = validTime(endTime);
-    if (!p2.first || !p3.first || p3.second - p2.second < Time(1, 0)) {
+    if (!p2.first || !p3.first || p3.second - p2.second < Time(0, 30)) {
         printError
     }
-
     venManager.addEvent(congregation_name, venue_name, country, p1.second,
                         p2.second, p3.second, eventName);
 }
@@ -176,7 +176,8 @@ void parseDelEvent(char* input) {
                              "\"%[^\"]\" \"%[^\"]\"",
                              congregation_name, venue_name, country, date,
                              startTime, eventName);
-    if (parsedItems != 7) {
+
+    if (parsedItems != 6) {
         printError
     }
     // Date validity

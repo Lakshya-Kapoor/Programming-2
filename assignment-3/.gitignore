@@ -1,5 +1,5 @@
 program
 a.out
 .vscode
-tests
-out
+out/output.txt
+tests/input.txt

@@ -86,8 +86,7 @@ void VenueManager::delVenue(string name, string country) {
     Date currDate = Date();
     // Checking whether venue is reserved in some future date
     for (int i = 0; i < venueList[index].reservations.size(); i++) {
-        if (venueList[index].reservations[i]->getStartDate() <= currDate &&
-            currDate <= venueList[index].reservations[i]->getEndDate()) {
+        if (currDate <= venueList[index].reservations[i]->getStartDate()) {
             printError
         }
     }
@@ -132,7 +131,7 @@ void VenueManager::showVenues(string locationString) const {
     }
 }
 
-Reservation* Venue::getReservationByCongName(std::string name) const {
+Reservation* Venue::getReservationByCongName(string name) const {
     for (int i = 0; i < reservations.size(); i++) {
         if (reservations[i]->getCongregation()->getName() == name) {
             return reservations[i];
@@ -144,12 +143,12 @@ Reservation* Venue::getReservationByCongName(std::string name) const {
 /* Add event */
 void VenueManager::addEvent(string congregation_name, string venue_name,
                             string country, Date date, Time startTime,
-                            Time endTime, string event_name) {
+                            Time endTime, string event_name) const {
     int index = venueNameExists(venue_name, country);
     if (index == -1) {
         printError
     }
-    Venue& venue = venueList[index];
+    const Venue& venue = venueList[index];
 
     Reservation* reservation =
         venue.getReservationByCongName(congregation_name);
@@ -161,18 +160,21 @@ void VenueManager::addEvent(string congregation_name, string venue_name,
     }
 
     Event* event = new Event(event_name, date, startTime, endTime);
-    reservation->addEvent(date - reservation->getStartDate(), event);
-    cout << "0\n";
+    if (reservation->addEvent(date - reservation->getStartDate(), event)) {
+        cout << "0\n";
+    } else {
+        printError
+    }
 }
 
-void VenueManager::delEvent(std::string congregation_name,
-                            std::string venue_name, std::string country,
-                            Date date, Time startTime, std::string event_name) {
+void VenueManager::delEvent(string congregation_name, string venue_name,
+                            string country, Date date, Time startTime,
+                            string event_name) const {
     int index = venueNameExists(venue_name, country);
     if (index == -1) {
         printError
     }
-    Venue& venue = venueList[index];
+    const Venue& venue = venueList[index];
 
     Reservation* reservation =
         venue.getReservationByCongName(congregation_name);
@@ -194,7 +196,7 @@ void VenueManager::delEvent(std::string congregation_name,
     cout << "0\n";
 }
 
-void VenueManager::showEvents(std::string venue_name, std::string country,
+void VenueManager::showEvents(string venue_name, string country,
                               Date date) const {
     int index = venueNameExists(venue_name, country);
     if (index == -1) {

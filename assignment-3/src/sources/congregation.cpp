@@ -71,7 +71,7 @@ void CongregationManager::delCongregation(string name,
     for (int i = 0; i < reservations.size(); i++) {
         string venueName = reservations[i]->getVenue()->name;
         string countryName = reservations[i]->getVenue()->location.getCountry();
-        freeVenue(venueName, countryName, name, venManager);
+        freeVenue(venueName, countryName, name, venManager, false);
     }
 
     congregationList.erase(congregationList.begin() + index);
@@ -98,31 +98,29 @@ void CongregationManager::reserveVenue(string venue_name, string country,
     if (congIndex == -1 || venIndex == -1) {
         printError
     }
-    Venue& venue = venManager.venueList[venIndex];
-    Congregation& congregation = congregationList[congIndex];
-
+    Venue* venue = &venManager.venueList[venIndex];
+    Congregation* congregation = &congregationList[congIndex];
     // Checking whether venue is free to be reserved from start to end date
-    Date dateIterator = congregation.startDate;
-    while (dateIterator <= congregation.endDate) {
-        if (venue.isReserved(dateIterator)) {
+    Date dateIterator = congregation->startDate;
+    while (dateIterator <= congregation->endDate) {
+        if (venue->isReserved(dateIterator)) {
             printError
         }
         dateIterator++;
     }
 
     Reservation* newReservation = new Reservation(
-        congregation.startDate, congregation.endDate, &congregation, &venue);
+        congregation->startDate, congregation->endDate, congregation, venue);
 
-    congregation.reservations.push_back(newReservation);
-    venue.addReservation(newReservation);
+    congregation->reservations.push_back(newReservation);
+    venue->addReservation(newReservation);
     printSuccess
 }
 
-// TODO: also delete any events added to the reservation
 /* Remove reservation from venue and congregation*/
 void CongregationManager::freeVenue(string venue_name, string country,
                                     string congregation_name,
-                                    VenueManager& venManager) {
+                                    VenueManager& venManager, bool printOut) {
     int congIndex = congregationExists(congregation_name);
     int venIndex = venManager.venueNameExists(venue_name, country);
     if (congIndex == -1 || venIndex == -1) {
@@ -147,7 +145,7 @@ void CongregationManager::freeVenue(string venue_name, string country,
     venue.delReservation(reservation);
     delete reservation;
 
-    printSuccess
+    if (printOut) printSuccess
 }
 
 /* Show reservations */

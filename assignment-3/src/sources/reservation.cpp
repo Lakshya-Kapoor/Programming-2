@@ -15,7 +15,7 @@ Reservation::Reservation(Date startDate, Date endDate,
       congregation(congregation),
       venue(venue),
       totalEvents(0) {
-    this->events.resize(endDate - startDate + 1);
+    this->events.resize((endDate - startDate) + 1);
 }
 
 /* Returns start date of reservation */
@@ -31,10 +31,49 @@ Congregation* Reservation::getCongregation() const { return congregation; }
 Venue* Reservation::getVenue() const { return venue; }
 
 /* adds Event to the reservation in time sorted order */
-void Reservation::addEvent(int index, Event* event) {
-    // TODO: Need to add this in time sorted order and overlap check
-    events[index].push_back(event);
+bool Reservation::addEvent(int index, Event* event) {
+    int left = 0;
+    int right = events[index].size() - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (events[index][mid]->getStartTime() < event->getStartTime()) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+    // Not adding in last position
+    if (left != events[index].size() && ((events[index][left]->getStartTime() -
+                                          event->getEndTime()) < Time(0, 30))) {
+        return false;
+    }
+    // Adding in last position
+    if (left == events[index].size() && index < events.size() - 1 &&
+        events[index + 1].size() > 0) {
+        Time diffNext = events[index + 1].front()->getStartTime() - Time(0, 0);
+        Time diffCurr = Time(24, 0) - event->getEndTime();
+        if (diffNext + diffCurr < Time(0, 30)) {
+            return false;
+        }
+    }
+
+    // Not adding in first position
+    if (left != 0 && ((event->getStartTime() -
+                       events[index][left - 1]->getEndTime()) < Time(0, 30))) {
+        return false;
+    }
+    // Adding in first position
+    if (left == 0 && index > 0 && events[index - 1].size() > 0) {
+        Time diffPrev = Time(24, 0) - events[index - 1].back()->getEndTime();
+        Time diffCurr = event->getStartTime() - Time(0, 0);
+        if (diffPrev + diffCurr < Time(0, 30)) {
+            return false;
+        }
+    }
+
+    events[index].insert(events[index].begin() + left, event);
     totalEvents++;
+    return true;
 }
 
 /* deletes Event from the reservation*/
@@ -74,5 +113,13 @@ void Reservation::showCalendar() const {
     for (Date iterator = startDate; iterator <= endDate; iterator++) {
         cout << iterator.dateString() << " ";
         showEvents(iterator - startDate);
+    }
+}
+
+Reservation::~Reservation() {
+    for (int i = 0; i < events.size(); i++) {
+        for (int j = 0; j < events[i].size(); j++) {
+            delete events[i][j];
+        }
     }
 }
