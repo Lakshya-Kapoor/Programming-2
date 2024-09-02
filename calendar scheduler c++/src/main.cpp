@@ -3,7 +3,6 @@
 #include <string.h>
 
 #include "parsing_input.h"
-#include "venue.h"
 
 int main() {
     char input[500];
