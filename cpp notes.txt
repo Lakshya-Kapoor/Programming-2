@@ -1,0 +1,37 @@
+Inheritance:
+	> Inheritance is used when a class has a 'is a' relationship with another class.
+	> Inheritance allows for reuse of code of the base class in the derived class.
+
+	Syntax:
+		class base {
+		    // code of class
+		};
+
+		class derived: <access-specifier> base {
+		    // New code
+		};
+	
+	What happens on creation of object of child class?
+		> The constructor of base class is first called
+		> Then the constructor of derived class is called
+	
+	Object slicing:
+		base obj = derived(); // calling the constructor of the derived class
+		> Both the constructors are called.
+		> But only the part of the base class is stored in obj, hence only members of base class are accessible
+
+	Name hiding:
+		> When a member of the base class is declared again in the derived class.
+		> Both members exist in the object of derived class.
+		> When the member is accessed through the an object of derived class it refers to the derived class member
+		> however both the members are accessible. The base member can be acceced via base::<member-name> 
+
+	Inheritance on the basis of access-specifier:
+		public: All the public and protected members of the base class remain public and protected in the derived class.	
+
+		protected: Public and protected members of base class become protected in derived class
+
+		private: Pubic and protected members of base class become private in derived class
+
+		NOTE: private members of the base class are never accessible by the derived class.
+
