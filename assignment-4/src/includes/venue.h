@@ -2,9 +2,9 @@
 #define VENUE_H
 
 #include <string>
-using namespace std;
 
-class Location {};
+#include "location.h"
+using namespace std;
 
 class Venue {
    private:
@@ -12,22 +12,30 @@ class Venue {
     Location location;
     int capacity;
 
+   protected:
+    string type;
+
    public:
     Venue(string name, Location location, int capacity);
+    string getName() const;
+    Location getLocation() const;
 };
 
-class Hotel : public Venue {};
+class Hotel : public Venue {
+   public:
+    Hotel(string name, Location location, int capacity);
+};
 
-class ConcertHall : public Venue {};
+class ConcertHall : public Venue {
+   public:
+    ConcertHall(string name, Location location, int capacity);
+};
 
-class ConventionCenter : public Venue {};
+class ConventionCenter : public Venue {
+   public:
+    ConventionCenter(string name, Location location, int capacity);
+};
 
 class Stadium : public Venue {};
-
-class OutdoorStadium : public Stadium {};
-
-class IndoorStadium : public Stadium {};
-
-class SwimmingPool : public Stadium {};
 
 #endif

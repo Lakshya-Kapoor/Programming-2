@@ -6,8 +6,9 @@
 
 using namespace std;
 
-#include "congregation.h"
 #include "date.h"
+
+class Congregation;
 
 class CongregationManager {
    private:

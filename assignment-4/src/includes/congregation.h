@@ -5,8 +5,9 @@
 #include <vector>
 
 #include "date.h"
-#include "program.h"
 using namespace std;
+
+class Program;
 
 class Congregation {
    private:
@@ -53,11 +54,6 @@ class Concert : public Congregation {
 };
 
 class Convention : public Congregation {
-    // A convenHon will have everything that a conference has, plus:
-    // i. Food and beverage stalls selling food and beverages to a]endees
-    // (program type “Food Court”)
-    // ii. One or more exhibiHons on diﬀerent themes with vendor exhibits
-    // (program type “ExhibiHon”)
    public:
     Convention(string name, Date start_date, Date end_date);
     string getCongregationType() const override;

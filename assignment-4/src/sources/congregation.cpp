@@ -5,8 +5,8 @@
 
 using namespace std;
 
-#include "../includes/date.h"
 #include "../includes/macros.h"
+#include "../includes/program.h"
 
 // Congregation constructor
 Congregation::Congregation(string name, Date start_date, Date end_date)

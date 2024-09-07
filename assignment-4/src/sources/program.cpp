@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 
-#include "../includes/date.h"
-
 using namespace std;
 
 Program::Program(string name, string type, Date start_date, Date end_date)

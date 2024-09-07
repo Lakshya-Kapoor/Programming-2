@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "../includes/congregation.h"
 #include "../includes/macros.h"
 
 using namespace std;
