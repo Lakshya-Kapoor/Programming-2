@@ -3,6 +3,8 @@
 
 #include <string>
 
+using namespace std;
+
 class Date {
    private:
     int year;
@@ -14,7 +16,6 @@ class Date {
     Date(int year, int month, int day);
     Date(const Date& other);
     Date& operator=(const Date& other);
-    std::string dateString() const;
     bool operator==(const Date& other) const;
     bool operator<(const Date& other) const;
     bool operator>(const Date& other) const;
@@ -22,6 +23,7 @@ class Date {
     bool operator>=(const Date& other) const;
     void operator++(int n);
     int operator-(const Date& other) const;
+    friend ostream& operator<<(ostream& os, const Date& date);
 };
 
 #endif

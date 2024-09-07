@@ -2,8 +2,10 @@
 #define CONGREGATION_H
 
 #include <string>
+#include <vector>
 
 #include "date.h"
+#include "program.h"
 using namespace std;
 
 class Congregation {
@@ -11,46 +13,43 @@ class Congregation {
     string name;
     Date start_date;
     Date end_date;
+    vector<Program*> program_list;
+
+   protected:
+    vector<string> programTypes;
 
    public:
     Congregation(string name, Date start_date, Date end_date);
-
     string getName() const;
+    Date getStartDate() const;
+    Date getEndDate() const;
+    bool validProgramType(string program_type) const;
+    virtual string getCongregationType() const = 0;
+    int programExists(string program_name) const;
+    void addProgram(string program_name, string program_type, Date start_date,
+                    Date end_date);
+    void delProgram(string program_name);
+    void showPrograms() const;
+
+    friend ostream& operator<<(ostream& os, const Congregation& congregation);
 };
 
 class Conference : public Congregation {
-    // Can have different types of events
-    // for which different invitations have to be generated
-    // And different rules apply for entry
-    // 1. Workshops: Occupy a day or more of conference
-    // 2. Main conference
-    // 3.Banquet
    public:
-    Conference();
+    Conference(string name, Date start_date, Date end_date);
+    string getCongregationType() const override;
 };
 
 class Games : public Congregation {
-    // Has the following events:
-    // i. Opening ceremony (program type “Ceremony”)
-    // ii. Closing ceremony (program type “Ceremony”)
-    // iii. Sports competition–let’s consider only these program types for now
-    //      1. “Track and ﬁeld” – includes athleHcs, football, cricket, hockey
-    //      as well. Can only be held in an Outdoor Stadium,
-    //      2. “Indoor games” – basketball, volleyball, tennis, badminton etc.
-    //      Can only be held in an Indoor Stadium
-    //      3. “Water sports” – swimming and diving. Can only be held in a
-    //      Swimming Pool.
    public:
-    Games();
+    Games(string name, Date start_date, Date end_date);
+    string getCongregationType() const override;
 };
 
 class Concert : public Congregation {
-    // Concerts will typically have just one venue and:
-    // i. A pre-concert performance by a lesser-known arHst (program type “Pre-
-    // concert”)
-    // ii. The main performance by the main arHst (program type “Main Concert”)
    public:
-    Concert();
+    Concert(string name, Date start_date, Date end_date);
+    string getCongregationType() const override;
 };
 
 class Convention : public Congregation {
@@ -60,7 +59,8 @@ class Convention : public Congregation {
     // ii. One or more exhibiHons on diﬀerent themes with vendor exhibits
     // (program type “ExhibiHon”)
    public:
-    Convention();
+    Convention(string name, Date start_date, Date end_date);
+    string getCongregationType() const override;
 };
 
 #endif

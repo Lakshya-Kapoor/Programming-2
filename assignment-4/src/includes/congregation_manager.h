@@ -15,13 +15,15 @@ class CongregationManager {
 
    public:
     int congregationExists(string name) const;
-
     void addCongregation(string name, string congregation_type, Date start_date,
                          Date end_date);
-
     void delCongregation(string name);
-
     void showCongregations() const;
+    void addProgramToCong(string cong_name, string program_type,
+                          string program_name, Date start_date,
+                          Date end_date) const;
+    void delProgramFromCong(string cong_name, string program_name) const;
+    void showProgramsInCong(string cong_name) const;
 };
 
 #endif
