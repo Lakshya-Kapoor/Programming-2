@@ -85,5 +85,29 @@ void CongregationManager::addProgramToCong(string cong_name,
 
     congregation_ptr->addProgram(program_name, program_type, start_date,
                                  end_date);
-    SUCCESS_OUTPUT;
+}
+
+void CongregationManager::delProgramFromCong(string cong_name,
+                                             string program_name) const {
+    int index = congregationExists(cong_name);
+
+    // No congregation with this name exists
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+
+    Congregation* congregation_ptr = congregation_list[index];
+    congregation_ptr->delProgram(program_name);
+}
+
+void CongregationManager::showProgramsInCong(string cong_name) const {
+    int index = congregationExists(cong_name);
+
+    // No congregation with this name exists
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+
+    Congregation* congregation_ptr = congregation_list[index];
+    congregation_ptr->showPrograms();
 }

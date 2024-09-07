@@ -15,13 +15,14 @@ Congregation::Congregation(string name, Date start_date, Date end_date)
 // Conference constructor
 Conference::Conference(string name, Date start_date, Date end_date)
     : Congregation(name, start_date, end_date) {
-    programTypes = {"Ceremony", "Main Conference", "Banquet"};
+    programTypes = {"Workshop", "Main Conference", "Banquet"};
 }
 
 // Convention constructor
 Convention::Convention(string name, Date start_date, Date end_date)
     : Congregation(name, start_date, end_date) {
-    programTypes = {"Ceremony", "Convention", "Banquet"};
+    programTypes = {"Workshop", "Main Conference", "Banquet", "Food Court",
+                    "Exhibition"};
 }
 
 // Games constructor
