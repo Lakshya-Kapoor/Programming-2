@@ -16,6 +16,7 @@ class VenueManager {
 
    public:
     int venueExists(string name, string country) const;
+    Venue* getVenue(int index) const;
     void addVenue(string name, Location location, string type, int capacity);
     void delVenue(string name, string country);
     void showVenues();

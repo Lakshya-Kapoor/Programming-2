@@ -6,6 +6,10 @@
 
 #include "../includes/congregation.h"
 #include "../includes/macros.h"
+#include "../includes/program.h"
+#include "../includes/reservation.h"
+#include "../includes/venue.h"
+#include "../includes/venue_manager.h"
 
 using namespace std;
 
@@ -111,4 +115,74 @@ void CongregationManager::showProgramsInCong(string cong_name) const {
 
     Congregation* congregation_ptr = congregation_list[index];
     congregation_ptr->showPrograms();
+}
+
+void CongregationManager::reserveVenue(string ven_name, string country,
+                                       string cong_name, string prog_name,
+                                       VenueManager& ven_manager) {
+    int index = congregationExists(cong_name);
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+    Congregation* congregation_ptr = congregation_list[index];
+
+    index = ven_manager.venueExists(ven_name, country);
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+    Venue* venue_ptr = ven_manager.getVenue(index);
+
+    index = congregation_ptr->programExists(prog_name);
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+    Program* program_ptr = congregation_ptr->getProgram(index);
+
+    // TODO Verify program type is valid for reservation in venue
+    if (venue_ptr->isReserved(program_ptr->getStartDate(),
+                              program_ptr->getEndDate())) {
+        ERROR_OUTPUT;
+    }
+    Reservation* new_reservation = new Reservation(venue_ptr, program_ptr);
+    venue_ptr->addReservation(new_reservation);
+    program_ptr->addReservation(new_reservation);
+    SUCCESS_OUTPUT;
+}
+
+void CongregationManager::freeVenue(string ven_name, string country,
+                                    string cong_name, string prog_name,
+                                    VenueManager& ven_manager) {
+    int index = congregationExists(cong_name);
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+    Congregation* congregation_ptr = congregation_list[index];
+
+    index = ven_manager.venueExists(ven_name, country);
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+    Venue* venue_ptr = ven_manager.getVenue(index);
+
+    index = congregation_ptr->programExists(prog_name);
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+    Program* program_ptr = congregation_ptr->getProgram(index);
+    Reservation* reservation_ptr = venue_ptr->getReservation(program_ptr);
+    if (reservation_ptr == nullptr) {
+        ERROR_OUTPUT;
+    }
+    venue_ptr->delReservation(reservation_ptr);
+    program_ptr->delReservation(reservation_ptr);
+    SUCCESS_OUTPUT;
+}
+
+// TODO complete showReserved
+void CongregationManager::showReserved(string congregation_name) const {
+    int index = congregationExists(congregation_name);
+    if (index == -1) {
+        ERROR_OUTPUT;
+    }
+    Congregation* congregation_ptr = congregation_list[index];
 }

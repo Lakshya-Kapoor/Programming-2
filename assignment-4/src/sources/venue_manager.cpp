@@ -19,6 +19,8 @@ int VenueManager::venueExists(string name, string country) const {
     return -1;
 }
 
+Venue* VenueManager::getVenue(int index) const { return venue_list[index]; }
+
 void VenueManager::addVenue(string name, Location location, string type,
                             int capacity) {
     int index = venueExists(name, location.getCountry());

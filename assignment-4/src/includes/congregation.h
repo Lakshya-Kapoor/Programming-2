@@ -21,16 +21,20 @@ class Congregation {
 
    public:
     Congregation(string name, Date start_date, Date end_date);
+
     string getName() const;
     Date getStartDate() const;
     Date getEndDate() const;
-    bool validProgramType(string program_type) const;
     virtual string getCongregationType() const = 0;
+
+    bool validProgramType(string program_type) const;
     int programExists(string program_name) const;
+    int getNumberOfPrograms() const;
     void addProgram(string program_name, string program_type, Date start_date,
                     Date end_date);
     void delProgram(string program_name);
     void showPrograms() const;
+    Program* getProgram(int index) const;
 
     friend ostream& operator<<(ostream& os, const Congregation& congregation);
 };

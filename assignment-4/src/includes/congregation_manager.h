@@ -9,10 +9,11 @@ using namespace std;
 #include "date.h"
 
 class Congregation;
+class VenueManager;
 
 class CongregationManager {
    private:
-    vector<Congregation *> congregation_list;
+    vector<Congregation*> congregation_list;
 
    public:
     int congregationExists(string name) const;
@@ -25,6 +26,11 @@ class CongregationManager {
                           Date end_date) const;
     void delProgramFromCong(string cong_name, string program_name) const;
     void showProgramsInCong(string cong_name) const;
+    void reserveVenue(string ven_name, string country, string cong_name,
+                      string prog_name, VenueManager& ven_manager);
+    void freeVenue(string ven_name, string country, string cong_name,
+                   string prog_name, VenueManager& ven_manager);
+    void showReserved(string congregation_name) const;
 };
 
 #endif

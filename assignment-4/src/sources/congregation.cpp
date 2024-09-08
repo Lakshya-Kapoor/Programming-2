@@ -66,6 +66,8 @@ int Congregation::programExists(string program_name) const {
     return -1;
 }
 
+int Congregation::getNumberOfPrograms() const { return program_list.size(); }
+
 void Congregation::addProgram(string program_name, string program_type,
                               Date start_date, Date end_date) {
     int index = programExists(program_name);
@@ -101,6 +103,10 @@ void Congregation::showPrograms() const {
     for (int i = 0; i < n; i++) {
         cout << *program_list[i];
     }
+}
+
+Program* Congregation::getProgram(int index) const {
+    return program_list[index];
 }
 
 // Print congregation details

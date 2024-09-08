@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class Location {
    private:
     string address, city, state, postalCode, country;
