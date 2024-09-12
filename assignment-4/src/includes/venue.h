@@ -23,6 +23,7 @@ class Venue {
     Venue(string name, Location location, int capacity);
     string getName() const;
     Location getLocation() const;
+    int getCapacity() const;
     virtual string getVenueType() const = 0;
     bool isReserved(Date start_date, Date end_date) const;
     Reservation* getReservation(Program* program) const;

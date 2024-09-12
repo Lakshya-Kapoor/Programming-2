@@ -35,6 +35,7 @@ class Congregation {
     void delProgram(string program_name);
     void showPrograms() const;
     Program* getProgram(int index) const;
+    void showReservations() const;
 
     friend ostream& operator<<(ostream& os, const Congregation& congregation);
 };

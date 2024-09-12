@@ -29,6 +29,6 @@ void Program::delReservation(Reservation* reservation) {
 
 ostream& operator<<(ostream& os, const Program& program) {
     os << program.name << " " << program.type << " " << program.start_date
-       << " " << program.end_date << endl;
+       << " " << program.end_date;
     return os;
 }

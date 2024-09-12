@@ -7,6 +7,7 @@ using namespace std;
 
 #include "../includes/macros.h"
 #include "../includes/program.h"
+#include "../includes/reservation.h"
 
 // Congregation constructor
 Congregation::Congregation(string name, Date start_date, Date end_date)
@@ -101,7 +102,7 @@ void Congregation::showPrograms() const {
 
     cout << n << endl;
     for (int i = 0; i < n; i++) {
-        cout << *program_list[i];
+        cout << *program_list[i] << endl;
     }
 }
 
@@ -109,11 +110,26 @@ Program* Congregation::getProgram(int index) const {
     return program_list[index];
 }
 
+void Congregation::showReservations() const {
+    int n = program_list.size();
+
+    cout << n << endl;
+    for (int i = 0; i < n; i++) {
+        Program* program = program_list[i];
+        int res_size = program->reservations.size();
+        cout << program->name << " " << program->type << " " << res_size
+             << endl;
+        for (int j = 0; j < res_size; j++) {
+            cout << *(program->reservations[j]) << endl;
+        }
+    }
+}
+
 // Print congregation details
 ostream& operator<<(ostream& os, const Congregation& congregation) {
     os << congregation.name << " ";
     os << congregation.getCongregationType() << " ";
-    os << congregation.start_date << " " << congregation.end_date << endl;
+    os << congregation.start_date << " " << congregation.end_date;
     return os;
 }
 

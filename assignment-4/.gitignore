@@ -1,1 +1,3 @@
 .vscode
+out/output.txt
+tests/input.txt

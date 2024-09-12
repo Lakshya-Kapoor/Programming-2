@@ -38,16 +38,15 @@ void CongregationManager::addCongregation(string name, string congregation_type,
         congregation_ptr = new Concert(name, start_date, end_date);
     } else if (congregation_type == "Convention") {
         congregation_ptr = new Convention(name, start_date, end_date);
-    } else if (congregation_type == "Conference") {
-        congregation_ptr = new Conference(name, start_date, end_date);
     } else {
-        ERROR_OUTPUT;
+        congregation_ptr = new Conference(name, start_date, end_date);
     }
 
     congregation_list.push_back(congregation_ptr);
     SUCCESS_OUTPUT;
 }
 
+// TODO: delete any program reservations
 void CongregationManager::delCongregation(string name) {
     int index = congregationExists(name);
 
@@ -65,7 +64,7 @@ void CongregationManager::showCongregations() const {
 
     cout << n << endl;
     for (int i = 0; i < n; i++) {
-        cout << *congregation_list[i];
+        cout << *congregation_list[i] << endl;
     }
 }
 
@@ -185,4 +184,5 @@ void CongregationManager::showReserved(string congregation_name) const {
         ERROR_OUTPUT;
     }
     Congregation* congregation_ptr = congregation_list[index];
+    congregation_ptr->showReservations();
 }

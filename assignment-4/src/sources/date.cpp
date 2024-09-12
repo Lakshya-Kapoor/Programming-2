@@ -49,7 +49,8 @@ bool Date::operator<=(const Date& other) const { return !(*this > other); }
 bool Date::operator>=(const Date& other) const { return !(*this < other); }
 
 // Print date
+// TODO: Properly format date for printing
 ostream& operator<<(ostream& os, const Date& date) {
-    os << date.day << "-" << date.month << "-" << date.day << endl;
+    os << date.day << "-" << date.month << "-" << date.day;
     return os;
 }

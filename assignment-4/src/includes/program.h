@@ -10,6 +10,7 @@
 using namespace std;
 
 class Reservation;
+class Congregation;
 
 class Program {
    private:
@@ -22,12 +23,14 @@ class Program {
    public:
     Program(string name, string type, Date start_date, Date end_date);
     string getName() const;
+    string getType() const;
     Date getStartDate() const;
     Date getEndDate() const;
     void addReservation(Reservation* reservation);
     void delReservation(Reservation* reservation);
 
     friend ostream& operator<<(ostream& os, const Program& program);
+    friend class Congregation;
 };
 
 #endif

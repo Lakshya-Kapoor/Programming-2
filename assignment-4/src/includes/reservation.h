@@ -3,6 +3,8 @@
 
 using namespace std;
 
+#include <iostream>
+
 #include "date.h"
 
 class Program;
@@ -19,6 +21,8 @@ class Reservation {
     Reservation(Venue* venue, Program* program);
     Venue* getVenue() const;
     Program* getProgram() const;
+
+    friend ostream& operator<<(ostream& os, const Reservation& reservation);
 };
 
 #endif

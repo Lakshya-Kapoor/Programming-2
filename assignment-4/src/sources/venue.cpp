@@ -50,7 +50,7 @@ void Venue::delReservation(Reservation* reservation) {
 
 ostream& operator<<(ostream& os, const Venue& venue) {
     os << venue.name << " " << venue.location << " " << venue.getVenueType()
-       << " " << venue.capacity << endl;
+       << " " << venue.capacity;
     return os;
 }
 

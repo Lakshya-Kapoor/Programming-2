@@ -16,7 +16,7 @@ Location::Location(string address, string city, string state, string postalCode,
 /* Prints location string "address:city:state:postal-code:country" */
 ostream& operator<<(ostream& os, const Location& location) {
     os << location.address << ":" << location.city << ":" << location.state
-       << ":" << location.postalCode << ":" << location.country << endl;
+       << ":" << location.postalCode << ":" << location.country;
     return os;
 }
 
