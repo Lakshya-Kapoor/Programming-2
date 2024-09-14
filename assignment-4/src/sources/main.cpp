@@ -23,7 +23,7 @@ int main() {
         input[strcspn(input, "\n")] = '\0';
 
         char command[50];
-        sscanf("%s", command);
+        sscanf(input, "%s", command);
 
         int idx = strlen(command);
         while (idx < strlen(input) && input[idx] == ' ') {
@@ -41,19 +41,19 @@ int main() {
         } else if (strcmp(command, "deleteProgram") == 0) {
             parseDeleteProgram(input + idx);
         } else if (strcmp(command, "showPrograms") == 0) {
-            parseShowPrograms();
+            parseShowPrograms(input + idx);
         } else if (strcmp(command, "addVenue") == 0) {
             parseAddVenue(input + idx);
         } else if (strcmp(command, "deleteVenue") == 0) {
             parseDeleteVenue(input + idx);
         } else if (strcmp(command, "showVenues") == 0) {
-            parseShowVenues();
-        } else if (strcmp(command, "reserveVenue") == 0) {
-            parseReserveVenue(input + idx);
-        } else if (strcmp(command, "freeVenue") == 0) {
-            parseFreeVenue(input + idx);
-        } else if (strcmp(command, "showReserved") == 0) {
-            parseShowReserved();
+            parseShowVenues(input + idx);
+            // } else if (strcmp(command, "reserveVenue") == 0) {
+            //     parseReserveVenue(input + idx);
+            // } else if (strcmp(command, "freeVenue") == 0) {
+            //     parseFreeVenue(input + idx);
+            // } else if (strcmp(command, "showReserved") == 0) {
+            //     parseShowReserved();
         } else if (strcmp(command, "end") == 0) {
             break;
         }

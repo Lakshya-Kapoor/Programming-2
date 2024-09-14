@@ -49,7 +49,7 @@ Date Congregation::getStartDate() const { return start_date; }
 Date Congregation::getEndDate() const { return end_date; }
 
 // Checks whether the given program type is valid for the congregation
-bool Congregation::validProgramType(string program_type) const {
+bool Congregation::allowedProgramType(string program_type) const {
     for (int i = 0; i < programTypes.size(); i++) {
         if (programTypes[i] == program_type) {
             return true;
@@ -117,7 +117,7 @@ void Congregation::showReservations() const {
     for (int i = 0; i < n; i++) {
         Program* program = program_list[i];
         int res_size = program->reservations.size();
-        cout << program->name << " " << program->type << " " << res_size
+        cout << program->name << " " << program->getType() << " " << res_size
              << endl;
         for (int j = 0; j < res_size; j++) {
             cout << *(program->reservations[j]) << endl;

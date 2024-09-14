@@ -15,7 +15,7 @@ class Congregation;
 class Program {
    private:
     string name;
-    string type;
+    string programType;
     Date start_date;
     Date end_date;
     vector<Reservation*> reservations;

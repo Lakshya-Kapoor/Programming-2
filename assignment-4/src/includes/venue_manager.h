@@ -19,7 +19,7 @@ class VenueManager {
     Venue* getVenue(int index) const;
     void addVenue(string name, Location location, string type, int capacity);
     void delVenue(string name, string country);
-    void showVenues();
+    void showVenues(string locationString) const;
 };
 
 #endif

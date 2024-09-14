@@ -15,6 +15,17 @@ string Venue::getName() const { return name; }
 
 Location Venue::getLocation() const { return location; }
 
+int Venue::getCapacity() const { return capacity; }
+
+bool Venue::allowedProgramType(string program_type) const {
+    for (int i = 0; i < programTypes.size(); i++) {
+        if (programTypes[i] == program_type) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool Venue::isReserved(Date start_date, Date end_date) const {
     for (int i = 0; i < reservations.size(); i++) {
         Date res_start = reservations[i]->getProgram()->getStartDate();
@@ -55,13 +66,35 @@ ostream& operator<<(ostream& os, const Venue& venue) {
 }
 
 Hotel::Hotel(string name, Location location, int capacity)
-    : Venue(name, location, capacity) {}
+    : Venue(name, location, capacity) {
+    programTypes = {"Workshop", "Main Conference", "Banquet", "Food Court",
+                    "Exhibition"};
+}
 
 ConcertHall::ConcertHall(string name, Location location, int capacity)
-    : Venue(name, location, capacity) {}
+    : Venue(name, location, capacity) {
+    programTypes = {"Pre-concert", "Main Concert"};
+}
 
 ConventionCenter::ConventionCenter(string name, Location location, int capacity)
-    : Venue(name, location, capacity) {}
+    : Venue(name, location, capacity) {
+    programTypes = {"Pre-concert",     "Main Concert", "Workshop",
+                    "Main Conference", "Banquet",      "Food Court",
+                    "Exhibition"};
+}
+
+Stadium::Stadium(string name, Location location, int capacity,
+                 string stadiumType)
+    : Venue(name, location, capacity) {
+    if (stadiumType == "Outdoor Stadium") {
+        programTypes = {"Track and ﬁeld", "Pre-concert", "Main Concert",
+                        "Food Court", "Exhibition"};
+    } else if (stadiumType == "Indoor Stadium") {
+        programTypes = {"Indoor games"};
+    } else if (stadiumType == "Swimming Pool") {
+        programTypes = {"Water Sports"};
+    }
+}
 
 string ConventionCenter::getVenueType() const { return "Convention Center"; }
 string ConcertHall::getVenueType() const { return "Concert Hall"; }

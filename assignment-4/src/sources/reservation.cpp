@@ -17,4 +17,5 @@ ostream& operator<<(ostream& os, const Reservation& reservation) {
     Venue* venue = reservation.getVenue();
     os << venue->getName() << " " << venue->getLocation() << " "
        << venue->getCapacity();
+    return os;
 }

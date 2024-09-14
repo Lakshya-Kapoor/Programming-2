@@ -27,7 +27,7 @@ class Congregation {
     Date getEndDate() const;
     virtual string getCongregationType() const = 0;
 
-    bool validProgramType(string program_type) const;
+    bool allowedProgramType(string program_type) const;
     int programExists(string program_name) const;
     int getNumberOfPrograms() const;
     void addProgram(string program_name, string program_type, Date start_date,

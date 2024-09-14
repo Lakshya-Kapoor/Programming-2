@@ -67,6 +67,21 @@ bool validCongregaionType(string type) {
            type == "Conference";
 }
 
+bool validProgramType(std::string type) {
+    string validTypes[] = {"Workshop",     "Main Conference", "Banquet",
+                           "Ceremony",     "Track and field", "Indoor games",
+                           "Water sports", "Pre-concert",     "Main Concert",
+                           "Food Court",   "Exhibition"};
+
+    for (const std::string& validType : validTypes) {
+        if (type == validType) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 int getLocationType(string city, string state, string postalCode,
                     string country) {
     if (postalCode.empty() && !country.empty() && city.empty() && state.empty())

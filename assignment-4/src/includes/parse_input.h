@@ -11,13 +11,13 @@ extern void parseShowCongregations();
 
 extern void parseAddProgram(char* input);
 extern void parseDeleteProgram(char* input);
-extern void parseShowPrograms();
+extern void parseShowPrograms(char* input);
 
 // Venue functions
 
 extern void parseAddVenue(char* input);
 extern void parseDeleteVenue(char* input);
-extern void parseShowVenues();
+extern void parseShowVenues(char* input);
 
 // Venue functions
 

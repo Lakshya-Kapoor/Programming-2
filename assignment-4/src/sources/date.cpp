@@ -1,6 +1,7 @@
 #include "../includes/date.h"
 
 #include <chrono>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -26,6 +27,14 @@ Date::Date(const Date& other) {
     day = other.day;
 }
 
+// Equal to operator
+Date& Date::operator=(const Date& other) {
+    year = other.year;
+    month = other.month;
+    day = other.day;
+    return *this;
+}
+
 // Checks if date1 == date2
 bool Date::operator==(const Date& other) const {
     return (year == other.year) && (month == other.month) && (day == other.day);
@@ -49,8 +58,8 @@ bool Date::operator<=(const Date& other) const { return !(*this > other); }
 bool Date::operator>=(const Date& other) const { return !(*this < other); }
 
 // Print date
-// TODO: Properly format date for printing
 ostream& operator<<(ostream& os, const Date& date) {
-    os << date.day << "-" << date.month << "-" << date.day;
+    os << date.year << "-" << std::setw(2) << std::setfill('0') << date.month
+       << "-" << std::setw(2) << std::setfill('0') << date.day;
     return os;
 }

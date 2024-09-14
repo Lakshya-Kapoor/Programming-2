@@ -46,7 +46,7 @@ void CongregationManager::addCongregation(string name, string congregation_type,
     SUCCESS_OUTPUT;
 }
 
-// TODO: delete any program reservations
+// TODO: delete any program reservations and the congregation
 void CongregationManager::delCongregation(string name) {
     int index = congregationExists(name);
 
@@ -81,7 +81,7 @@ void CongregationManager::addProgramToCong(string cong_name,
 
     Congregation* congregation_ptr = congregation_list[index];
 
-    if (!congregation_ptr->validProgramType(program_type) ||
+    if (!congregation_ptr->allowedProgramType(program_type) ||
         !(start_date >= congregation_ptr->getStartDate() &&
           end_date <= congregation_ptr->getEndDate())) {
         ERROR_OUTPUT;
@@ -137,7 +137,10 @@ void CongregationManager::reserveVenue(string ven_name, string country,
     }
     Program* program_ptr = congregation_ptr->getProgram(index);
 
-    // TODO Verify program type is valid for reservation in venue
+    if (!venue_ptr->allowedProgramType(program_ptr->getType())) {
+        ERROR_OUTPUT;
+    }
+
     if (venue_ptr->isReserved(program_ptr->getStartDate(),
                               program_ptr->getEndDate())) {
         ERROR_OUTPUT;
