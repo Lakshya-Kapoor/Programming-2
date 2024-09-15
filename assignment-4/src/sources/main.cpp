@@ -54,7 +54,7 @@ int main() {
             parseFreeVenue(input + idx);
         } else if (strcmp(command, "showReserved") == 0) {
             parseShowReserved(input + idx);
-        } else if (strcmp(command, "end") == 0) {
+        } else if (strcmp(command, "End") == 0) {
             break;
         }
     }
