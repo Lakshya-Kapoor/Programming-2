@@ -46,7 +46,6 @@ void CongregationManager::addCongregation(string name, string congregation_type,
     SUCCESS_OUTPUT;
 }
 
-// TODO: delete any program reservations and the congregation
 void CongregationManager::delCongregation(string name) {
     int index = congregationExists(name);
 
@@ -55,6 +54,7 @@ void CongregationManager::delCongregation(string name) {
         ERROR_OUTPUT;
     }
 
+    delete congregation_list[index];
     congregation_list.erase(congregation_list.begin() + index);
     SUCCESS_OUTPUT;
 }
@@ -143,8 +143,10 @@ void CongregationManager::reserveVenue(string ven_name, string country,
 
     if (venue_ptr->isReserved(program_ptr->getStartDate(),
                               program_ptr->getEndDate())) {
+        cout << "Venue is reserved already\n";
         ERROR_OUTPUT;
     }
+
     Reservation* new_reservation = new Reservation(venue_ptr, program_ptr);
     venue_ptr->addReservation(new_reservation);
     program_ptr->addReservation(new_reservation);
@@ -175,12 +177,12 @@ void CongregationManager::freeVenue(string ven_name, string country,
     if (reservation_ptr == nullptr) {
         ERROR_OUTPUT;
     }
+    delete reservation_ptr;
     venue_ptr->delReservation(reservation_ptr);
     program_ptr->delReservation(reservation_ptr);
     SUCCESS_OUTPUT;
 }
 
-// TODO complete showReserved
 void CongregationManager::showReserved(string congregation_name) const {
     int index = congregationExists(congregation_name);
     if (index == -1) {

@@ -23,6 +23,6 @@ extern void parseShowVenues(char* input);
 
 extern void parseReserveVenue(char* input);
 extern void parseFreeVenue(char* input);
-extern void parseShowReserved();
+extern void parseShowReserved(char* input);
 
 #endif

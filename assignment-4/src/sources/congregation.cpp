@@ -90,7 +90,9 @@ void Congregation::delProgram(string program_name) {
         ERROR_OUTPUT;
     }
 
-    // TODO: Delete any reservations made for this program
+    if (program_list[index]->reservations.size() > 0) {
+        ERROR_OUTPUT;
+    }
 
     delete program_list[index];
     program_list.erase(program_list.begin() + index);

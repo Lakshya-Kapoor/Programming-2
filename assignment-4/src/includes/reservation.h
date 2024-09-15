@@ -19,6 +19,8 @@ class Reservation {
 
    public:
     Reservation(Venue* venue, Program* program);
+    Date getStartDate() const;
+    Date getEndDate() const;
     Venue* getVenue() const;
     Program* getProgram() const;
 

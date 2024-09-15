@@ -48,12 +48,12 @@ int main() {
             parseDeleteVenue(input + idx);
         } else if (strcmp(command, "showVenues") == 0) {
             parseShowVenues(input + idx);
-            // } else if (strcmp(command, "reserveVenue") == 0) {
-            //     parseReserveVenue(input + idx);
-            // } else if (strcmp(command, "freeVenue") == 0) {
-            //     parseFreeVenue(input + idx);
-            // } else if (strcmp(command, "showReserved") == 0) {
-            //     parseShowReserved();
+        } else if (strcmp(command, "reserveVenue") == 0) {
+            parseReserveVenue(input + idx);
+        } else if (strcmp(command, "freeVenue") == 0) {
+            parseFreeVenue(input + idx);
+        } else if (strcmp(command, "showReserved") == 0) {
+            parseShowReserved(input + idx);
         } else if (strcmp(command, "end") == 0) {
             break;
         }

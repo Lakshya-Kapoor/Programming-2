@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "../includes/macros.h"
+#include "../includes/reservation.h"
 #include "../includes/utils.h"
 #include "../includes/venue.h"
 
@@ -58,7 +59,15 @@ void VenueManager::delVenue(string name, string country) {
         ERROR_OUTPUT;
     }
 
-    // TODO may have to check some other conditions before deleting the venue
+    // Checking if venue is reserved in some future date
+    Date currDate = Date();
+    vector<Reservation*> reservations = venue_list[index]->getAllReservations();
+    for (int i = 0; i < reservations.size(); i++) {
+        if (reservations[i]->getStartDate() >= currDate ||
+            reservations[i]->getEndDate() >= currDate) {
+            ERROR_OUTPUT;
+        }
+    }
 
     delete venue_list[index];
     venue_list.erase(venue_list.begin() + index);

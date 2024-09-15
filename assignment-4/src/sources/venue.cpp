@@ -17,6 +17,10 @@ Location Venue::getLocation() const { return location; }
 
 int Venue::getCapacity() const { return capacity; }
 
+vector<Reservation*> Venue::getAllReservations() const { return reservations; }
+
+string Venue::getVenueType() const { return venue_type; }
+
 bool Venue::allowedProgramType(string program_type) const {
     for (int i = 0; i < programTypes.size(); i++) {
         if (programTypes[i] == program_type) {
@@ -60,24 +64,27 @@ void Venue::delReservation(Reservation* reservation) {
 }
 
 ostream& operator<<(ostream& os, const Venue& venue) {
-    os << venue.name << " " << venue.location << " " << venue.getVenueType()
-       << " " << venue.capacity;
+    os << venue.name << " " << venue.location << " " << venue.venue_type << " "
+       << venue.capacity;
     return os;
 }
 
 Hotel::Hotel(string name, Location location, int capacity)
     : Venue(name, location, capacity) {
+    venue_type = "Hotel";
     programTypes = {"Workshop", "Main Conference", "Banquet", "Food Court",
                     "Exhibition"};
 }
 
 ConcertHall::ConcertHall(string name, Location location, int capacity)
     : Venue(name, location, capacity) {
+    venue_type = "Concert Hall";
     programTypes = {"Pre-concert", "Main Concert"};
 }
 
 ConventionCenter::ConventionCenter(string name, Location location, int capacity)
     : Venue(name, location, capacity) {
+    venue_type = "Convention Center";
     programTypes = {"Pre-concert",     "Main Concert", "Workshop",
                     "Main Conference", "Banquet",      "Food Court",
                     "Exhibition"};
@@ -86,16 +93,13 @@ ConventionCenter::ConventionCenter(string name, Location location, int capacity)
 Stadium::Stadium(string name, Location location, int capacity,
                  string stadiumType)
     : Venue(name, location, capacity) {
+    venue_type = stadiumType;
     if (stadiumType == "Outdoor Stadium") {
-        programTypes = {"Track and ﬁeld", "Pre-concert", "Main Concert",
-                        "Food Court", "Exhibition"};
+        programTypes = {"Ceremony",     "Track and field", "Pre-concert",
+                        "Main Concert", "Food Court",      "Exhibition"};
     } else if (stadiumType == "Indoor Stadium") {
-        programTypes = {"Indoor games"};
+        programTypes = {"Ceremony", "Indoor games"};
     } else if (stadiumType == "Swimming Pool") {
-        programTypes = {"Water Sports"};
+        programTypes = {"Ceremony", "Water Sports"};
     }
 }
-
-string ConventionCenter::getVenueType() const { return "Convention Center"; }
-string ConcertHall::getVenueType() const { return "Concert Hall"; }
-string Hotel::getVenueType() const { return "Hotel"; }
