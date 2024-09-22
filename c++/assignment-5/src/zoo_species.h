@@ -3,8 +3,12 @@
 
 #include <string>
 
-#include "custom_types.h"
 using namespace std;
+
+enum diet_type { herbivore, carnivore };
+enum size_type { small, medium, large };
+enum bird_feed_type { grain, insect, fish };
+enum aqua_feed_type { fishfood, livefish, plants };
 
 class Zoo_species {
    protected:
@@ -16,7 +20,6 @@ class Zoo_species {
     void Set_name(string name);
     void Set_count(int count);
     virtual void Print() const;
-    // Zoo_species destructor
     virtual ~Zoo_species();
 };
 
@@ -36,7 +39,7 @@ class Reptile : public Zoo_species {
 
    public:
     Reptile(string name, int count);
-    void Set_diet_type(size_type type);
+    void Set_size_type(size_type type);
     void Print() const override;
 };
 

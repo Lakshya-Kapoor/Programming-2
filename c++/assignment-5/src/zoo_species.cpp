@@ -41,7 +41,7 @@ void Mammal::Print() const {
 Reptile::Reptile(string name, int count) : Zoo_species(name, count) {}
 
 // Set diet type of mammal
-void Reptile::Set_diet_type(size_type type) { Feed_size = type; }
+void Reptile::Set_size_type(size_type type) { Feed_size = type; }
 
 void Reptile::Print() const {
     Zoo_species::Print();
