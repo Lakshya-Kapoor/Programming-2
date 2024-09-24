@@ -17,16 +17,35 @@ void Zoo_species::Set_name(string name) { Species_name = name; }
 // Set species count
 void Zoo_species::Set_count(int count) { Species_count = count; }
 
+// Increment species count
+void Zoo_species::Update_count(int increment) { Species_count += increment; }
+
+// Get species name
+string Zoo_species::Get_name() const { return Species_name; }
+
+// Get species count
+int Zoo_species::Get_count() const { return Species_count; }
+
+// Get species type
+string Zoo_species::Get_type() const { return Species_type; }
+
 // Print species data
 void Zoo_species::Print() const {
     cout << Species_name << " " << Species_count << " ";
 }
 
 // Mammal constructor
-Mammal::Mammal(string name, int count) : Zoo_species(name, count) {}
+Mammal::Mammal(string name, int count, diet_type type)
+    : Zoo_species(name, count) {
+    Set_diet_type(type);
+    Species_type = "M";
+}
 
 // Set diet type of mammal
 void Mammal::Set_diet_type(diet_type type) { Diet_type = type; }
+
+// Get diet type of mammal
+diet_type Mammal::Get_diet_type() const { return Diet_type; }
 
 void Mammal::Print() const {
     Zoo_species::Print();
@@ -38,10 +57,17 @@ void Mammal::Print() const {
 }
 
 // Reptile constructor
-Reptile::Reptile(string name, int count) : Zoo_species(name, count) {}
+Reptile::Reptile(string name, int count, size_type type)
+    : Zoo_species(name, count) {
+    Set_size_type(type);
+    Species_type = "R";
+}
 
 // Set diet type of mammal
 void Reptile::Set_size_type(size_type type) { Feed_size = type; }
+
+// Get diet type of mammal
+size_type Reptile::Get_size_type() const { return Feed_size; }
 
 void Reptile::Print() const {
     Zoo_species::Print();
@@ -55,10 +81,17 @@ void Reptile::Print() const {
 }
 
 // Bird constructor
-Bird::Bird(string name, int count) : Zoo_species(name, count) {}
+Bird::Bird(string name, int count, bird_feed_type type)
+    : Zoo_species(name, count) {
+    Set_bird_feed(type);
+    Species_type = "B";
+}
 
 // Set diet type of mammal
 void Bird::Set_bird_feed(bird_feed_type type) { Bird_feed = type; }
+
+// Get diet type of mammal
+bird_feed_type Bird::Get_bird_feed() const { return Bird_feed; }
 
 void Bird::Print() const {
     Zoo_species::Print();
@@ -72,10 +105,17 @@ void Bird::Print() const {
 }
 
 // Aquatic constructor
-Aquatic::Aquatic(string name, int count) : Zoo_species(name, count) {}
+Aquatic::Aquatic(string name, int count, aqua_feed_type type)
+    : Zoo_species(name, count) {
+    Set_aqua_feed(type);
+    Species_type = "Q";
+}
 
 // Set diet type of mammal
 void Aquatic::Set_aqua_feed(aqua_feed_type type) { Aqua_feed = type; }
+
+// Get diet type of mammal
+aqua_feed_type Aquatic::Get_aqua_feed() const { return Aqua_feed; }
 
 void Aquatic::Print() const {
     Zoo_species::Print();

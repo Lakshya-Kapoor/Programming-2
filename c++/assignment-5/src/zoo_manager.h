@@ -7,20 +7,22 @@
 
 using namespace std;
 
-enum species_type { M, R, B, Q };
 class Zoo_species;
 
 class Zoo_manager {
    private:
-    vector<Zoo_species*> mammals;
-    vector<Zoo_species*> reptiles;
-    vector<Zoo_species*> birds;
-    vector<Zoo_species*> aquatics;
+    vector<Zoo_species*> species;
+    int mammal_count = 0;
+    int reptile_count = 0;
+    int bird_count = 0;
+    int aquatic_count = 0;
 
    public:
-    void add(species_type category, string name, int count, string attribute);
-    void del(species_type category, string name, int count);
-    void show(species_type category);
+    void print_category(string category) const;
+    int species_index(string category, string name) const;
+    void add(string category, string name, int count, string attribute);
+    void del(string category, string name, int count);
+    void show(string category) const;
 };
 
 #endif
