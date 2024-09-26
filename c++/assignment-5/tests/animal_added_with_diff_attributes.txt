@@ -10,3 +10,4 @@ show B
 add M tiger 4 carnivore
 delete M lion 2
 show Q
+exit

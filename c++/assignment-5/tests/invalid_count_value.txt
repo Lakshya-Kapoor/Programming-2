@@ -10,3 +10,4 @@ add M elephant 1 herbivore
 show M
 delete M elephant 1
 show Q
+exit

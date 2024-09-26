@@ -8,3 +8,4 @@ show R
 add Q whale 4 fishfood
 delete R crocodile 2
 show Q
+exit

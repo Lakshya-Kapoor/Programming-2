@@ -8,3 +8,4 @@ add Q seahorse 2 plants
 show Q
 delete Q seahorse 2
 show A
+exit
