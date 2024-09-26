@@ -5,6 +5,7 @@
 #include <vector>
 using namespace std;
 
+#include "custom_exception.h"
 #include "macro.h"
 #include "zoo_species.h"
 
@@ -12,13 +13,14 @@ using namespace std;
 void Zoo_manager::add(string category, string name, int count,
                       string attribute) {
     Zoo_species* new_animal = nullptr;
+
     if (category == "M") {
         if (attribute == "carnivore") {
             new_animal = new Mammal(name, count, carnivore);
         } else if (attribute == "herbivore") {
             new_animal = new Mammal(name, count, herbivore);
         } else {
-            // Throw error invalid attribute
+            throw CustomException("Invalid attribute");
         }
     } else if (category == "R") {
         if (attribute == "small") {
@@ -28,7 +30,7 @@ void Zoo_manager::add(string category, string name, int count,
         } else if (attribute == "large") {
             new_animal = new Reptile(name, count, large);
         } else {
-            // Throw error invalid attribute
+            throw CustomException("Invalid attribute");
         }
     } else if (category == "B") {
         if (attribute == "insect") {
@@ -38,7 +40,7 @@ void Zoo_manager::add(string category, string name, int count,
         } else if (attribute == "fish") {
             new_animal = new Bird(name, count, fish);
         } else {
-            // Throw error invalid attribute
+            throw CustomException("Invalid attribute");
         }
     } else if (category == "Q") {
         if (attribute == "fishfood") {
@@ -48,10 +50,8 @@ void Zoo_manager::add(string category, string name, int count,
         } else if (attribute == "plants") {
             new_animal = new Aquatic(name, count, plants);
         } else {
-            // Throw error invalid attribute
+            throw CustomException("Invalid attribute");
         }
-    } else {
-        // Throw error invalid category
     }
 
     int index = species_index(category, name);
@@ -60,7 +60,7 @@ void Zoo_manager::add(string category, string name, int count,
         existing_animal = species[index];
     }
 
-    // Same name species doesn't exist
+    // Same name animal doesn't exist
     if (existing_animal == nullptr) {
         species.push_back(new_animal);
         if (category == "M") {
@@ -75,24 +75,22 @@ void Zoo_manager::add(string category, string name, int count,
         return;
     }
 
+    // Same name animal exists
     if (category == "M" &&
         new_animal->Get_diet_type() == existing_animal->Get_diet_type()) {
         existing_animal->Update_count(count);
-        mammal_count++;
     } else if (category == "R" && new_animal->Get_size_type() ==
                                       existing_animal->Get_size_type()) {
         existing_animal->Update_count(count);
-        reptile_count++;
     } else if (category == "B" && new_animal->Get_bird_feed() ==
                                       existing_animal->Get_bird_feed()) {
         existing_animal->Update_count(count);
-        bird_count++;
     } else if (category == "Q" && new_animal->Get_aqua_feed() ==
                                       existing_animal->Get_aqua_feed()) {
         existing_animal->Update_count(count);
-        aquatic_count++;
     } else {
-        // Throw error not matching attribute
+        throw CustomException(
+            "Attribute doesn't match with existing animals attribute");
     }
 }
 
@@ -116,12 +114,13 @@ void Zoo_manager::del(string category, string name, int count) {
     }
 
     if (existing_animal == nullptr) {
-        // Throw error as animal doesn't exist
+        throw CustomException("Animal doesn't exist");
     }
 
     if (existing_animal->Get_count() < count) {
-        // Throw error as insufficient animals to delete
+        throw CustomException("Insufficient animals for deletion");
     } else if (existing_animal->Get_count() == count) {
+        delete existing_animal;
         species.erase(species.begin() + index);
         if (category == "M") {
             mammal_count--;
@@ -141,7 +140,7 @@ void Zoo_manager::del(string category, string name, int count) {
 void Zoo_manager::show(string category) const {
     if (category == "A") {
         int total = mammal_count + reptile_count + bird_count + aquatic_count;
-        cout << "total species" << total << endl;
+        cout << "total species " << total << endl;
         cout << "mammal " << mammal_count << endl;
         print_category("M");
         cout << "reptile " << reptile_count << endl;
@@ -159,8 +158,6 @@ void Zoo_manager::show(string category) const {
         cout << "bird " << bird_count << endl;
     } else if (category == "Q") {
         cout << "aquatic " << aquatic_count << endl;
-    } else {
-        // Throw error for invalid category
     }
     print_category(category);
 }

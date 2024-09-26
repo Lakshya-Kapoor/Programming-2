@@ -7,4 +7,10 @@
         return;                           \
     }
 
+#define SUCCESS(msg)                        \
+    {                                       \
+        cout << "SUCCESS: " << msg << endl; \
+        return;                             \
+    }
+
 #endif

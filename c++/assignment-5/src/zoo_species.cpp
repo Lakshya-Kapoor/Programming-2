@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include "custom_exception.h"
+
 using namespace std;
 
 // Zoo_species constructor
@@ -32,6 +34,19 @@ string Zoo_species::Get_type() const { return Species_type; }
 // Print species data
 void Zoo_species::Print() const {
     cout << Species_name << " " << Species_count << " ";
+}
+
+diet_type Zoo_species::Get_diet_type() const {
+    throw CustomException("This function is not accessible");
+}
+size_type Zoo_species::Get_size_type() const {
+    throw CustomException("This function is not accessible");
+}
+bird_feed_type Zoo_species::Get_bird_feed() const {
+    throw CustomException("This function is not accessible");
+}
+aqua_feed_type Zoo_species::Get_aqua_feed() const {
+    throw CustomException("This function is not accessible");
 }
 
 // Mammal constructor

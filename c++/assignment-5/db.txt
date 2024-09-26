@@ -1,0 +1,9 @@
+total species 4
+mammal 2
+lion 3 carnivore
+giraffe 10 herbivore
+reptile 2
+python 4 large
+anaconda 69 large
+bird 0
+aquatic 0

@@ -29,7 +29,6 @@ class Zoo_species {
     virtual bird_feed_type Get_bird_feed() const;
     virtual aqua_feed_type Get_aqua_feed() const;
     virtual void Print() const;
-    virtual ~Zoo_species() = 0;
 };
 
 class Mammal : public Zoo_species {
