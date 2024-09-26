@@ -6,7 +6,6 @@
 using namespace std;
 
 #include "custom_exception.h"
-#include "macro.h"
 #include "zoo_species.h"
 
 // adding species
@@ -168,5 +167,11 @@ void Zoo_manager::print_category(string category) const {
         if (category == species[i]->Get_type()) {
             species[i]->Print();
         }
+    }
+}
+
+Zoo_manager::~Zoo_manager() {
+    for (int i = 0; i < species.size(); i++) {
+        delete species[i];
     }
 }

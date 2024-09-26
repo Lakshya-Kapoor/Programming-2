@@ -23,6 +23,7 @@ class Zoo_manager {
     void add(string category, string name, int count, string attribute);
     void del(string category, string name, int count);
     void show(string category) const;
+    ~Zoo_manager();
 };
 
 #endif
