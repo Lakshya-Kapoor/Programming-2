@@ -1,0 +1,12 @@
+add M lion 2 carnivore
+add R snake 3 small
+add M lion 4 carnivore
+add M lion 4 herbivore
+add B parrot 5 grain
+show M
+delete R snake 3
+add Q dolphin 2 livefish
+show B
+add M tiger 4 carnivore
+delete M lion 2
+show Q

@@ -1,0 +1,10 @@
+add B eagle 2 fish
+delete R snake 1
+add R crocodile 3 large
+show B
+delete B eagle 2
+add M bear 2 large
+show R
+add Q whale 4 fishfood
+delete R crocodile 2
+show Q

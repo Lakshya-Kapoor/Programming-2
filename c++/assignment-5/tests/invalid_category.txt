@@ -1,0 +1,10 @@
+add M deer 5 herbivore
+delete M deer 3
+add R gecko 4 small
+show M
+add B robin 6 grain
+delete A gecko 2
+add Q seahorse 2 plants
+show Q
+delete Q seahorse 2
+show A

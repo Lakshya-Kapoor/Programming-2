@@ -1,0 +1,12 @@
+add R lizard 1 medium
+add B sparrow 7 insect
+add B sparrow -7 insect
+show R
+delete B sparrow 7
+add Q shark 3 fishfood
+delete Q shark 5
+delete Q shark 1
+add M elephant 1 herbivore
+show M
+delete M elephant 1
+show Q
