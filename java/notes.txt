@@ -1,0 +1,19 @@
+Access modifiers:
+    1. For classes:
+        public: The class is accessible by any other class
+        default: The class is onluy accessible by classes in the same package.
+    
+    2. For attributes, methods and constructors:
+        public: Code is accessible by all classes
+        private: Code is accessible only within the class
+        default: Code is accessible only in the same package
+        protected: Code is accessible in subclasses and same package
+    
+Non access modifiers:
+    1. For classes:
+        final: No further inheritance
+        abstract: The class can't be used to create objects
+    
+    2. For attributes and methods:
+        final: Attributes and methods cannot be overridden/modified
+        static: Attributes and methods belongs to the class, rather than an object
