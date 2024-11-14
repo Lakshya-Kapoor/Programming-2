@@ -15,10 +15,6 @@ abstract class Customer {
 
     public abstract String getCustomerType();
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
     public ShoppingCart getCart() {
         return shoppingCart;
     }
