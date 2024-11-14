@@ -27,6 +27,10 @@ abstract class Customer {
         return shoppingCart.getCartPrice();
     }
 
+    @Override
+    public String toString() {
+        return customerId + " " + name + " " + email + " " + address + " " + getCustomerType();
+    }
 }
 
 class RegularCustomer extends Customer {

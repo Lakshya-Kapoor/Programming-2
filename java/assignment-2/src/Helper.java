@@ -84,7 +84,6 @@ class Helper {
                     break;
                 }
 
-                // TODO: parsing of data within quotes needs to be done
                 case "ADD_REGULAR_CUSTOMER": {
                     String customerId = inputs[1];
                     String customerName = inputs[2];
@@ -119,7 +118,6 @@ class Helper {
                     break;
                 }
 
-                // TODO: need to fix the storage of item in cart
                 case "ADD_TO_CART": {
                     String customerId = inputs[1];
                     String itemId = inputs[2];
@@ -133,8 +131,8 @@ class Helper {
                     } else if (item.getQuantity() == 0) {
                         print("Item " + itemId + " is out of stock");
                     } else {
+                        item.decQuantity(); // decreasing quantity of item in inventory
                         customer.getCart().addProduct(item);
-                        item.decQuantity();
                         print("Item " + itemId + " added to " + customerId + "'s cart");
                     }
                     break;

@@ -8,8 +8,16 @@ public class ShoppingCart {
     }
 
     public void addProduct(Product product) {
-        product.decQuantity();
-        products.add(product);
+        for (int i = 0; i < products.size(); i++) {
+            Product p = products.get(i);
+            if (p.getProductId() == product.getProductId()) {
+                p.incQuantity(); // If product already exists in cart, increase quantity
+                return;
+            }
+        }
+        Product copy = product.copy(); // If product does not exist in cart, add a new product
+        copy.setQuantity(1);
+        products.add(copy);
     }
 
     public void viewCart() {
