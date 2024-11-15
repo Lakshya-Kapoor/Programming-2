@@ -55,8 +55,8 @@ class Helper {
                         break;
                     }
 
-                    if (price <= 0 || quantity <= 0 || warrantyPeriod <= 0) {
-                        print("Error: Invalid value");
+                    if (price <= 0 || quantity <= 0) {
+                        print("Error: Invalid value.");
                         break;
                     }
 
@@ -75,6 +75,11 @@ class Helper {
 
                     if (inventory.containsKey(itemId)) {
                         itemExistsError(itemId);
+                        break;
+                    }
+
+                    if (price <= 0 || quantity <= 0) {
+                        print("Error: Invalid value.");
                         break;
                     }
 
@@ -106,13 +111,13 @@ class Helper {
                     String customerName = inputs[2];
                     String email = inputs[3];
                     String address = inputs[4];
-                    Customer customer = new PremiumCustomer(customerId, customerName, email, address);
 
                     if (customers.containsKey(customerId)) {
                         customerExistsError(customerId);
                         break;
                     }
 
+                    Customer customer = new PremiumCustomer(customerId, customerName, email, address);
                     customers.put(customerId, customer);
                     print("Premium Customer added: " + customerId + " " + customerName);
                     break;
@@ -129,7 +134,7 @@ class Helper {
                     } else if (item == null) {
                         itemNotFoundError(itemId);
                     } else if (item.getQuantity() == 0) {
-                        print("Item " + itemId + " is out of stock");
+                        print("Error: Insufficient stock for Item ID " + itemId);
                     } else {
                         item.decQuantity(); // decreasing quantity of item in inventory
                         customer.getCart().addProduct(item);
@@ -142,7 +147,7 @@ class Helper {
                     String customerId = inputs[1];
                     Customer customer = customers.get(customerId);
                     if (customer != null) {
-                        print("Items in cart for " + customerId + ":");
+                        print("Items in Cart for " + customerId + ":");
                         customer.getCart().viewCart();
                     } else {
                         customerNotFoundError(customerId);
@@ -155,7 +160,11 @@ class Helper {
                     Customer customer = customers.get(customerId);
                     if (customer != null) {
                         double total = customer.getTotalPrice();
-                        print("Total Price for " + customerId + ": " + total);
+                        if (customer.getCustomerType() == "Regular") {
+                            print("Total Price for " + customerId + ": " + total);
+                        } else {
+                            print("Total Price for " + customerId + " (with discount): " + total);
+                        }
                     } else {
                         customerNotFoundError(customerId);
                     }

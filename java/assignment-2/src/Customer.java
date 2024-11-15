@@ -25,7 +25,8 @@ abstract class Customer {
 
     @Override
     public String toString() {
-        return customerId + " " + name + " " + email + " " + address + " " + getCustomerType();
+        return "Customer info for " + customerId + " (" + getCustomerType() + "):\nName: " + name + "\nAddress: "
+                + address;
     }
 }
 
