@@ -35,14 +35,17 @@ class Product {
         return quantity;
     }
 
+    // decrement quantity by 1
     public void decQuantity() {
         quantity--;
     }
 
+    // increment quantity by 1
     public void incQuantity() {
         quantity++;
     }
 
+    // set quantity to a specific value
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
@@ -56,11 +59,13 @@ class Product {
 class Electronics extends Product {
     private int warrantyPeriod;
 
+    // constructor
     public Electronics(String productId, String name, double price, int quantity, int warrantyPeriod) {
         super(productId, name, price, quantity);
         this.warrantyPeriod = warrantyPeriod;
     }
 
+    // copy constructor
     public Electronics(Electronics other) {
         super(other);
         this.warrantyPeriod = other.warrantyPeriod;
@@ -80,11 +85,13 @@ class Electronics extends Product {
 class Clothing extends Product {
     private String size; // S / M / L
 
+    // constructor
     public Clothing(String productId, String name, double price, int quantity, String size) {
         super(productId, name, price, quantity);
         this.size = size;
     }
 
+    // copy constructor
     public Clothing(Clothing other) {
         super(other);
         this.size = other.size;
