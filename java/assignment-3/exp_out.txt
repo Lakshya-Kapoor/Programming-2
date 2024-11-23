@@ -1,0 +1,25 @@
+Customer: Aman (Regular)
+Address: 12 MG Road, Bengaluru
+Shopping Cart:
+P100 Smartphone 69999.00 Quantity: 1
+Total: 69999.00
+Customer: Priya (Premium)
+Address: 24 Lajpat Nagar, New Delhi
+Shopping Cart:
+F200 Leather Jacket 4500.00 Quantity: 1
+P101 Laptop 120000.00 Quantity: 1
+Total (after 10% discount): 112050.00
+Customer: Rohan (Regular)
+Address: 56 Park Street, Kolkata
+Shopping Cart:
+F201 Running Shoes 2500.00 Quantity: 3
+Total: 7500.00
+Processing Order O001 for Aman
+Payment Method: Credit Card
+Payment Status: Successful
+Processing Order O002 for Priya
+Payment Method: PayPal
+Payment Status: Successful
+Processing Order O003 for Rohan
+Payment Method: Credit Card
+Payment Status: Successful

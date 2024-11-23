@@ -1,0 +1,19 @@
+3
+C001 Aman aman.kumar@example.com "12 MG Road, Bengaluru" Regular
+C002 Priya priya.verma@example.com "24 Lajpat Nagar, New Delhi" Premium
+C003 Rohan rohan.sharma@example.com "56 Park Street, Kolkata" Regular
+5
+P100 Electronics Smartphone 69999.00 5 12
+P101 Electronics Laptop 120000.00 3 24
+F200 Fashion "Leather Jacket" 4500.00 8 M
+F201 Fashion "Running Shoes" 2500.00 10 L
+F202 Fashion "T-Shirt" 500.00 15 XL
+4
+C001 P100 1
+C002 F200 1
+C002 P101 1
+C003 F201 3
+3
+O001 C001 Online CreditCard
+O002 C002 Online PayPal
+O003 C003 InStore CreditCard
