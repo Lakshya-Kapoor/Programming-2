@@ -1,0 +1,18 @@
+REGISTER_STUDENT S001 Ananya ananya@example.com Study@2023
+REGISTER_ADMIN A001 Ramesh ramesh@example.com Teacher@123
+REGISTER_STUDENT S002 Ravi ravi@example.com Study@2024
+LOGIN A001 Teacher@123
+CREATE_MCQ_QUIZ A001 Q101 "Indian History" 30
+ADD_MCQ_QUESTION A001 Q101 Q1 "Who was the first President of India?" 5 "Dr. RajendraPrasad;Mahatma Gandhi;Jawaharlal Nehru" "Dr. Rajendra Prasad"
+LOGOUT A001
+LOGIN S001 Study@2023
+LOGIN S002 Study@2024
+START_QUIZ S001 Q101
+START_QUIZ S002 Q101
+ANSWER_QUESTION S002 Q101 Q1 " Mahatma Gandhi"
+ANSWER_QUESTION S001 Q101 Q1 "Dr. Rajendra Prasad"
+VIEW_SCORE S001 Q101
+VIEW_SCORE S002 Q101
+LOGOUT S001
+LOGOUT S002
+EXIT

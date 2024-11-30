@@ -25,4 +25,22 @@ public class Quiz {
     public int getDuration() {
         return duration;
     }
+
+    public void addQuestion(String questionId, Question question) {
+        if (questions.containsKey(questionId)) {
+            throw new RuntimeException("Question " + questionId + " already exists");
+        }
+
+        questions.put(questionId, question);
+    }
+
+    public Question getQuestion(String questionId) {
+        return questions.get(questionId);
+    }
+
+    public boolean answerQuestion(String questionId, String answer) {
+        Question question = questions.get(questionId);
+        return question.getCorrectAnswer().equals(answer);
+    }
+
 }

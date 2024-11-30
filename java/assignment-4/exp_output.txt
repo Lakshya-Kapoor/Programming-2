@@ -1,0 +1,17 @@
+Student Registered: S001 Ananya
+Admin Registered: A001 Ramesh
+Student Registered: S002 Ravi
+User A001 logged in
+MCQ Quiz Created: Q101 Indian History
+MCQ Question Added: Q1
+User A001 logged out
+User S002 logged in
+User S001 logged in
+Quiz Started: Q101 Indian History by S001
+Quiz Started: Q101 Indian History by S002
+Answer Submitted for Q1 by S002
+Answer Submitted for Q1 by S001
+Score for S001 in Q101: 5
+Score for S002 in Q101: 0
+User S001 logged out
+User S002 logged out

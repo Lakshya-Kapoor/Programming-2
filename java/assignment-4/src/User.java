@@ -28,10 +28,6 @@ public class User {
         return password;
     }
 
-    @Override
-    public String toString() {
-        return userId + " " + name;
-    }
 }
 
 class Student extends User {

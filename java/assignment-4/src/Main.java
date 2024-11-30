@@ -8,5 +8,8 @@ public class Main {
         HashMap<String, Quiz> quizzes = new HashMap<>();
 
         Scanner scanner = new Scanner(System.in);
+
+        Helper helper = new Helper();
+        helper.processCommand(users, activeUsers, quizzes, scanner);
     }
 }

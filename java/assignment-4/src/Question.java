@@ -3,14 +3,14 @@ import java.util.ArrayList;
 public class Question {
     private String question;
     private int points;
-    private ArrayList<String> answers;
+    private ArrayList<String> options;
     private String correctAnswer;
 
     // constructor
-    public Question(String question, int points, ArrayList<String> answers, String correctAnswer) {
+    public Question(String question, int points, ArrayList<String> options, String correctAnswer) {
         this.question = question;
         this.points = points;
-        this.answers = answers;
+        this.options = options;
         this.correctAnswer = correctAnswer;
     }
 
@@ -23,8 +23,8 @@ public class Question {
         return points;
     }
 
-    public ArrayList<String> getAnswers() {
-        return answers;
+    public ArrayList<String> getOptions() {
+        return options;
     }
 
     public String getCorrectAnswer() {
