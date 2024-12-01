@@ -27,28 +27,30 @@ public class QuizSession implements Runnable {
     @Override
     public void run() {
         System.out.println("Quiz Started: " + quiz.getQuizId() + " " + quiz.getTitle() + " by " + student.getUserId());
-        long endTime = System.currentTimeMillis() + quiz.getDuration() * 1000;
+        long endTime = System.currentTimeMillis() + quiz.getDuration() * 60 * 1000;
         while (running && System.currentTimeMillis() < endTime) {
             try {
-                String command = commands.take();
-                String[] inputs = parseCommand(command);
+                String command = commands.poll();
+                if (command != null) {
+                    String[] inputs = parseCommand(command);
 
-                switch (inputs[0]) {
-                    case "answer":
-                        String questionId = inputs[1];
-                        String answer = inputs[2];
-                        if (quiz.answerQuestion(questionId, answer)) {
-                            score += quiz.getQuestion(questionId).getPoints();
-                        }
-                        System.out.println("Answer Submitted for " + questionId + " by " + student.getUserId());
-                        break;
-                    case "score":
-                        System.out
-                                .println("Score for " + student.getUserId() + " in " + quiz.getQuizId() + ": " + score);
-                        break;
+                    switch (inputs[0]) {
+                        case "answer":
+                            String questionId = inputs[1];
+                            String answer = inputs[2];
+                            if (quiz.answerQuestion(questionId, answer)) {
+                                score += quiz.getQuestion(questionId).getPoints();
+                            }
+                            System.out.println("Answer Submitted for " + questionId + " by " + student.getUserId());
+                            break;
+                        case "score":
+                            System.out.println(
+                                    "Score for " + student.getUserId() + " in " + quiz.getQuizId() + ": " + score);
+                            break;
+                    }
                 }
-
-            } catch (InterruptedException e) {
+                Thread.sleep(100);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
